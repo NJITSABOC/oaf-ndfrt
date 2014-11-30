@@ -35,8 +35,10 @@ public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetwo
         return new NDFTargetGroup(id, root, conceptCount, parentIds);
     }
 
-    protected NDFTargetAbstractionNetwork createTargetAbstractionNetwork(HashMap<Integer, NDFTargetGroup> groups, HashMap<Integer, HashSet<Integer>> groupHierarchy) {       
-        return new NDFTargetAbstractionNetwork(new ArrayList<NDFTargetContainer>(), groups, groupHierarchy);
+    protected NDFTargetAbstractionNetwork createTargetAbstractionNetwork(
+            NDFTargetGroup targetGroup, HashMap<Integer, NDFTargetGroup> groups, 
+            HashMap<Integer, HashSet<Integer>> groupHierarchy) {    
+        
+        return new NDFTargetAbstractionNetwork(targetGroup, new ArrayList<NDFTargetContainer>(), groups, groupHierarchy);
     }
-    
 }

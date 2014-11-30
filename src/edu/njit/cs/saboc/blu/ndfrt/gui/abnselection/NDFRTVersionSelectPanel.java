@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 public class NDFRTVersionSelectPanel extends JPanel {
     private JLabel statusLabel;
     
-    public NDFRTVersionSelectPanel() {
+    public NDFRTVersionSelectPanel(final NDFDisplayFrameListener displayListener) {
         JButton loadButton = new JButton("Load NDF RT Release");
         loadButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
@@ -36,23 +36,21 @@ public class NDFRTVersionSelectPanel extends JPanel {
                     System.out.println("LOADING NDF RT RELEASE...");
                     
                     NDFRTDataSource dataSource = loader.loadNDFRTDataSource(selectedFolder.getAbsolutePath(), 167503724543L);
-                    
+
                     System.out.println("FINDING NO DOSAGE DRUGS...");
                     
                     HashSet<NDFConcept> concepts = getNoDosageDrugs(dataSource.getConceptHierarchy().getConceptsInHierarchy());
                     
                     NDFTargetAbstractionNetworkGenerator targetAbNGen = new NDFTargetAbstractionNetworkGenerator(dataSource);
-                    
+
                     System.out.println("GENERATING TARGET ABN...");
                     
                     NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
                             dataSource.getRoleFromId(165356240921L), dataSource.getConceptFromId(165356241075L));
                     
-                    HashMap<Integer, NDFTargetGroup> groups = (HashMap<Integer, NDFTargetGroup>)abn.getGroups();
+                    System.out.println("CREATING BLUGRAPH...");
                     
-                    for(NDFTargetGroup group : groups.values()) {
-                        System.out.println(group.getRoot().getName() + "\t" + group.getConceptCount());
-                    }
+                    displayListener.addNewTargetAbNGraphFrame(abn);
                 }
             }
         });

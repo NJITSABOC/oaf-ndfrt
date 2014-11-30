@@ -11,10 +11,12 @@ import java.util.HashSet;
  */
 public class NDFTargetAbstractionNetwork extends TargetAbstractionNetwork<NDFTargetGroup> {
     
-    public NDFTargetAbstractionNetwork(ArrayList<NDFTargetContainer> containers,
+    public NDFTargetAbstractionNetwork(
+            NDFTargetGroup rootGroup,
+            ArrayList<NDFTargetContainer> containers,
             HashMap<Integer, NDFTargetGroup> groups,
             HashMap<Integer, HashSet<Integer>> groupHierarchy) {
         
-        super(containers, groups, groupHierarchy);
+        super(rootGroup, containers, groups, groupHierarchy);
     }
 }
