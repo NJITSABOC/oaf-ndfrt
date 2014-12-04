@@ -10,9 +10,19 @@ import java.util.HashSet;
 public class NDFConcept extends Concept {
     
     private HashSet<NDFRelationship> attributeRelationships = new HashSet<NDFRelationship>();
-    
+       
     public NDFConcept(long id, String name) {
         super(id, name);
+    }
+    
+    public String getName() {
+        String name = super.getName();
+        
+        if(name.contains("[")) {
+            return name.substring(0, name.lastIndexOf("["));
+        }
+        
+        return name;
     }
     
     public void addRelationship(NDFRelationship relationship) {

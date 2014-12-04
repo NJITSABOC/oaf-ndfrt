@@ -4,6 +4,7 @@ import edu.njit.cs.saboc.blu.core.graph.BluGraph;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.graph.NDFTargetGraph;
+import edu.njit.cs.saboc.blu.ndfrt.gui.gep.listeners.NDFTargetAbNGEPListener;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.listeners.NDFTargetGroupOptionsConfiguration;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.utils.drawing.TargetAbNPainter;
 import javax.swing.JFrame;
@@ -12,7 +13,6 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
 
 
     public NDFTargetAbNInternalGraphFrame(final JFrame parentFrame, final NDFTargetAbstractionNetwork data) {
-        
         super(parentFrame, "NDF RT Ingredient Summary");
 
         this.setTitle("TEST FRAME");
@@ -34,7 +34,7 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
 
         initializeGraphTabs(graph, 
                 new TargetAbNPainter(), 
-                null, 
+                new NDFTargetAbNGEPListener(parentFrame), 
                 new NDFTargetGroupOptionsConfiguration(parentFrame, this, data));
 
         updateHierarchyInfoLabel(data);

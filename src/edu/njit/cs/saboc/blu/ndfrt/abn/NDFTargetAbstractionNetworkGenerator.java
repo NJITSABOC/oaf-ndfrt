@@ -6,6 +6,7 @@ import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.SingleRootedHierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
 import edu.njit.cs.saboc.blu.ndfrt.datasource.NDFRTDataSource;
+import edu.njit.cs.saboc.blu.ndfrt.datastructure.NDFConceptHierarchy;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,7 +17,7 @@ import java.util.HashSet;
  */
 public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetworkGenerator<NDFConcept, NDFTargetGroup, 
         NDFTargetAbstractionNetwork, NDFRole> {
-    
+
     private NDFRTDataSource dataSource;
     
     public NDFTargetAbstractionNetworkGenerator(NDFRTDataSource dataSource) {
@@ -31,8 +32,11 @@ public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetwo
         return dataSource.getConceptHierarchy().getSubhierarchyRootedAt(root);
     }
 
-    public NDFTargetGroup createGroup(int id, NDFConcept root, int conceptCount, HashSet<Integer> parentIds) {
-        return new NDFTargetGroup(id, root, conceptCount, parentIds);
+    public NDFTargetGroup createGroup(int id, NDFConcept root, HashSet<Integer> parentIds, 
+            SingleRootedHierarchy<NDFConcept> groupHierarchy, HashMap<NDFConcept, HashSet<NDFConcept>> incomingRelSources) {
+        
+        return new NDFTargetGroup(id, root, groupHierarchy.getNodesInHierarchy().size(), 
+                parentIds, (NDFConceptHierarchy)groupHierarchy, incomingRelSources);
     }
 
     protected NDFTargetAbstractionNetwork createTargetAbstractionNetwork(
@@ -41,4 +45,9 @@ public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetwo
         
         return new NDFTargetAbstractionNetwork(targetGroup, new ArrayList<NDFTargetContainer>(), groups, groupHierarchy);
     }
+    
+    protected SingleRootedHierarchy<NDFConcept> createGroupHierarchy(NDFConcept root) {
+        return new NDFConceptHierarchy(root);
+    }
+    
 }
