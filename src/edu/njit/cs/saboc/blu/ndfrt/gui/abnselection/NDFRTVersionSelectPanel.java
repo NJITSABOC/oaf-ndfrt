@@ -48,6 +48,9 @@ public class NDFRTVersionSelectPanel extends JPanel {
                     NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
                             dataSource.getRoleFromId(165356240921L), dataSource.getConceptFromId(165356241075L));
                     
+                    //NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
+                    //        dataSource.getRoleFromId(165356240978L), dataSource.getConceptFromId(165356241521L));
+                    
                     System.out.println("CREATING BLUGRAPH...");
                     
                     displayListener.addNewTargetAbNGraphFrame(abn);
