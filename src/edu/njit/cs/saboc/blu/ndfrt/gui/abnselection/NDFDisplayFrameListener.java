@@ -2,6 +2,8 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.abnselection;
 
 import edu.njit.cs.saboc.blu.core.gui.graphframe.FrameCreationListener;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
+import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
+import edu.njit.cs.saboc.blu.ndfrt.gui.graphframe.NDFPAreaInternalGraphFrame;
 import edu.njit.cs.saboc.blu.ndfrt.gui.graphframe.NDFTargetAbNInternalGraphFrame;
 import javax.swing.JFrame;
 
@@ -22,6 +24,14 @@ public abstract class NDFDisplayFrameListener implements FrameCreationListener {
 
         this.displayFrame(igf);
 
+        return igf;
+    }
+    
+    public NDFPAreaInternalGraphFrame addNewPAreaTaxonomyGraphGraph(NDFPAreaTaxonomy taxonomy) {
+        NDFPAreaInternalGraphFrame igf = new NDFPAreaInternalGraphFrame(mainFrame, taxonomy, true, false);
+        
+        this.displayFrame(igf);
+        
         return igf;
     }
 }
