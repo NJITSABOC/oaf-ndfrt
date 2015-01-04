@@ -1,7 +1,7 @@
 package edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy;
 
-import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.GenericPAreaTaxonomy;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.PAreaTaxonomyGenerator;
+import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.RelationshipEquality;
 import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.SingleRootedHierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRelationship;
@@ -15,7 +15,7 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator <NDFPArea, NDFArea, NDFRegion, NDFConcept, NDFRole> {
+public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator<NDFPAreaTaxonomy, NDFPArea, NDFArea, NDFRegion, NDFConcept, NDFRole> {
    
     private NDFConceptHierarchy hierarchy;
     
@@ -26,6 +26,20 @@ public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator <NDFPArea,
     @Override
     protected SingleRootedHierarchy<NDFConcept> getConceptHierarchy() {
         return hierarchy;
+    }
+    
+    
+    @Override
+    protected RelationshipEquality<NDFRole> getRelationshipEquality() {
+        return new RelationshipEquality<NDFRole>() {
+            public boolean equalsNoInheritance(HashSet<NDFRole> a, HashSet<NDFRole> b) {
+                return a.equals(b);
+            }
+
+            public boolean equalsInheritance(HashSet<NDFRole> a, HashSet<NDFRole> b) {
+                return a.equals(b);
+            }
+        };
     }
 
     @Override
@@ -55,7 +69,7 @@ public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator <NDFPArea,
     }
 
     @Override
-    protected GenericPAreaTaxonomy<NDFPArea, NDFArea, NDFRegion, NDFConcept, NDFRole> createPAreaTaxonomy(
+    protected NDFPAreaTaxonomy createPAreaTaxonomy(
             SingleRootedHierarchy<NDFConcept> conceptHierarchy, NDFPArea rootPArea, ArrayList<NDFArea> areas, 
             HashMap<Integer, NDFPArea> pareas, HashMap<Integer, HashSet<Integer>> pareaHierarchy) {
        

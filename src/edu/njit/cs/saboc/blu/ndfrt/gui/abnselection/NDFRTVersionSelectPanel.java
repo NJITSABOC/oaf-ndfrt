@@ -1,7 +1,5 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.abnselection;
 
-import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
-import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomyGenerator;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRelationship;
 import edu.njit.cs.saboc.blu.ndfrt.datasource.NDFRTDataSource;
@@ -36,24 +34,41 @@ public class NDFRTVersionSelectPanel extends JPanel {
                     
                     NDFRTDataSource dataSource = loader.loadNDFRTDataSource(selectedFolder.getAbsolutePath(), 167503724543L);
 
+                    HashSet<NDFConcept> targetConcepts = new HashSet<NDFConcept>();
+                    
+                    HashSet<NDFConcept> concepts = dataSource.getConceptHierarchy().getConceptsInHierarchy();
+
+                    NDFConceptHierarchy ingredientConcepts = (NDFConceptHierarchy)dataSource.getConceptHierarchy().getSubhierarchyRootedAt(
+                            dataSource.getConceptFromId(165356241075L));
+                    
+                    System.out.println("TOTAL CONCEPTS: " + ingredientConcepts.getConceptsInHierarchy().size());
+   
+                    
                     /*
+                    
                     System.out.println("FINDING NO DOSAGE DRUGS...");
                     
                     HashSet<NDFConcept> concepts = getNoDosageDrugs(dataSource.getConceptHierarchy().getConceptsInHierarchy());        
                             
                     NDFTargetAbstractionNetworkGenerator targetAbNGen = new NDFTargetAbstractionNetworkGenerator(dataSource);
 
-                    
                     System.out.println("GENERATING TARGET ABN...");
+                    
                     
                     NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
                             dataSource.getRoleFromId(165356240921L), dataSource.getConceptFromId(165356241075L));
+                    
+                    //abn = (NDFTargetAbstractionNetwork)abn.createReducedTargetAbN(targetAbNGen, new NDFReducedTargetAbNGenerator(), 10, 4000);
                     
                     //NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
                     //        dataSource.getRoleFromId(165356240978L), dataSource.getConceptFromId(165356241521L));
                     
                     System.out.println("CREATING BLUGRAPH...");
-                    */
+                    
+                    displayListener.addNewTargetAbNGraphFrame(abn);
+                    
+                    
+                    /*
                     
                     NDFPAreaTaxonomyGenerator generator = new NDFPAreaTaxonomyGenerator(
                             (NDFConceptHierarchy) dataSource.getConceptHierarchy().getSubhierarchyRootedAt(dataSource.getConceptFromId(165356241073l)));
@@ -61,6 +76,7 @@ public class NDFRTVersionSelectPanel extends JPanel {
                     NDFPAreaTaxonomy taxonomy = (NDFPAreaTaxonomy) generator.derivePAreaTaxonomy();
 
                     displayListener.addNewPAreaTaxonomyGraphGraph(taxonomy);
+                    */
                 }
             }
         });

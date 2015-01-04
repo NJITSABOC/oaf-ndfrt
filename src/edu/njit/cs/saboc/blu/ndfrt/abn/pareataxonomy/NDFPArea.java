@@ -10,7 +10,7 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFPArea extends GenericPArea<NDFConcept, NDFRole> {
+public class NDFPArea extends GenericPArea<NDFConcept, NDFRole, NDFPArea> {
     
     public NDFPArea(int id,
             SingleRootedHierarchy<NDFConcept> conceptHierarchy, 

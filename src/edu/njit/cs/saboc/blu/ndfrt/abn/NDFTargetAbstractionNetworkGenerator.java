@@ -35,8 +35,7 @@ public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetwo
     public NDFTargetGroup createGroup(int id, NDFConcept root, HashSet<Integer> parentIds, 
             SingleRootedHierarchy<NDFConcept> groupHierarchy, HashMap<NDFConcept, HashSet<NDFConcept>> incomingRelSources) {
         
-        return new NDFTargetGroup(id, root, groupHierarchy.getNodesInHierarchy().size(), 
-                parentIds, (NDFConceptHierarchy)groupHierarchy, incomingRelSources);
+        return new NDFTargetGroup(id, root, parentIds, (NDFConceptHierarchy)groupHierarchy, incomingRelSources);
     }
 
     protected NDFTargetAbstractionNetwork createTargetAbstractionNetwork(
