@@ -9,8 +9,8 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFTargetAbstractionNetwork extends TargetAbstractionNetwork<NDFTargetGroup> {
-    
+public class NDFTargetAbstractionNetwork extends TargetAbstractionNetwork<NDFTargetGroup, NDFTargetAbstractionNetwork> {
+   
     public NDFTargetAbstractionNetwork(
             NDFTargetGroup rootGroup,
             ArrayList<NDFTargetContainer> containers,
@@ -19,4 +19,9 @@ public class NDFTargetAbstractionNetwork extends TargetAbstractionNetwork<NDFTar
         
         super(rootGroup, containers, groups, groupHierarchy);
     }
+    
+    public NDFTargetAbstractionNetwork getReduced(int smallest, int largest) {
+        return super.createReducedTargetAbN(new NDFTargetAbstractionNetworkGenerator(null), new NDFReducedTargetAbNGenerator(), smallest, largest);
+    }
+
 }

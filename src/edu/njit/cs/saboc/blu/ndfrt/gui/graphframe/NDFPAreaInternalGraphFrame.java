@@ -4,7 +4,9 @@ import edu.njit.cs.saboc.blu.core.graph.BluGraph;
 import edu.njit.cs.saboc.blu.core.graph.options.GraphOptions;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.GroupOptionsPanelConfiguration;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.AbNPainter;
+import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.GroupEntryLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
+import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPArea;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
 import edu.njit.cs.saboc.blu.ndfrt.graph.NDFPAreaBluGraph;
 import javax.swing.JFrame;
@@ -38,7 +40,19 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
     public final void replaceInternalFrameDataWith(NDFPAreaTaxonomy data,
             boolean areaGraph, boolean conceptCountLabels, GraphOptions options) {
         
-        BluGraph newGraph = new NDFPAreaBluGraph(parentFrame, data, areaGraph,conceptCountLabels, options);
+        GroupEntryLabelCreator labelCreator;
+        
+        if(data.isReduced()) {
+            labelCreator = new GroupEntryLabelCreator<NDFPArea>() {
+                public String getCountStr(NDFPArea parea) {
+                    return String.format("(%d) [%d]", parea.getConceptCount(), 0);
+                }
+            };
+        } else {
+            labelCreator = new GroupEntryLabelCreator<NDFPArea>();
+        }
+        
+        BluGraph newGraph = new NDFPAreaBluGraph(parentFrame, data, areaGraph,conceptCountLabels, options, labelCreator);
 
         initializeGraphTabs(newGraph, new AbNPainter(), 
                 null, 

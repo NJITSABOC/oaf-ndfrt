@@ -12,7 +12,7 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFPAreaTaxonomy extends GenericPAreaTaxonomy<NDFPArea, NDFArea, NDFRegion, NDFConcept, NDFRole> {
+public class NDFPAreaTaxonomy extends GenericPAreaTaxonomy<NDFPAreaTaxonomy, NDFPArea, NDFArea, NDFRegion, NDFConcept, NDFRole> {
     
     public NDFPAreaTaxonomy(
             NDFConceptHierarchy conceptHierarchy,
@@ -23,4 +23,9 @@ public class NDFPAreaTaxonomy extends GenericPAreaTaxonomy<NDFPArea, NDFArea, ND
         
         super(conceptHierarchy, rootPArea, areas, pareas, pareaHierarchy);
     }
+    
+    public NDFPAreaTaxonomy getReduced(int min, int max) {
+        return null;
+    }
+    
 }
