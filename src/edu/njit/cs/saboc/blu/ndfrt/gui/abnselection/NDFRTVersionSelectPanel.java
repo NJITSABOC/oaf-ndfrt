@@ -1,13 +1,11 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.abnselection;
 
-import edu.njit.cs.saboc.blu.ndfrt.abn.NDFReducedTargetAbNGenerator;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetworkGenerator;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRelationship;
 import edu.njit.cs.saboc.blu.ndfrt.datasource.NDFRTDataSource;
 import edu.njit.cs.saboc.blu.ndfrt.datasource.NDFRTLoader;
-import edu.njit.cs.saboc.blu.ndfrt.datastructure.NDFConceptHierarchy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -49,7 +47,7 @@ public class NDFRTVersionSelectPanel extends JPanel {
                     NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
                             dataSource.getRoleFromId(165356240921L), dataSource.getConceptFromId(165356241075L));
                     
-                    abn = abn.getReduced(10, 3000);
+                    abn = abn.getReduced(5, 3000);
                     
                     //NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
                     //        dataSource.getRoleFromId(165356240978L), dataSource.getConceptFromId(165356241521L));

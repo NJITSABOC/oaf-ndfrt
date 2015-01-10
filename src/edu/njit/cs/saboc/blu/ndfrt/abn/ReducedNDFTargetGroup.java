@@ -9,8 +9,8 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class ReducedNDFTargetGroup extends NDFTargetGroup implements ReducingGroup<NDFTargetGroup> {
-    
+public class ReducedNDFTargetGroup extends NDFTargetGroup implements ReducingGroup<NDFConcept, NDFTargetGroup> {
+
     private HashSet<NDFTargetGroup> reducedGroups;
     
     public ReducedNDFTargetGroup(NDFTargetGroup group, HashSet<Integer> parentIds, HashSet<NDFTargetGroup> reducedGroups) {
@@ -23,4 +23,27 @@ public class ReducedNDFTargetGroup extends NDFTargetGroup implements ReducingGro
     public HashSet<NDFTargetGroup> getReducedGroups() {
         return reducedGroups;
     }
+    
+    public HashSet<NDFConcept> getAllGroupsConcepts() {
+        HashSet<NDFConcept> allConcepts = new HashSet<NDFConcept>();
+        allConcepts.addAll(this.getGroupIncomingRelSources().keySet());
+        
+        for(NDFTargetGroup reducedGroup : reducedGroups) {
+            allConcepts.addAll(reducedGroup.getGroupIncomingRelSources().keySet());
+        }
+        
+        return allConcepts;
+    }
+
+    public HashSet<NDFConcept> getAllGroupsSourceConcepts() {
+        HashSet<NDFConcept> allConcepts = new HashSet<NDFConcept>();
+        allConcepts.addAll(this.getSourceConcepts());
+
+        for (NDFTargetGroup reducedGroup : reducedGroups) {
+            allConcepts.addAll(reducedGroup.getSourceConcepts());
+        }
+
+        return allConcepts;
+    }
+    
 }

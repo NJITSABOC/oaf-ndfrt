@@ -40,15 +40,19 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
                 public String getCountStr(NDFTargetGroup targetGroup) {
                     ReducingGroup reduced = (ReducingGroup)targetGroup;
                     
-                    if(reduced.getReducedGroups().size() == 0) {
-                        return super.getCountStr(targetGroup);
+                    if(reduced.getReducedGroups().isEmpty()) {
+                        return String.format("(I:%d) (D:%d)", targetGroup.getConceptCount(), targetGroup.getSourceConcepts().size());
                     }
                     
-                    return String.format("(%d) [%d]", targetGroup.getConceptCount(), reduced.getReducedGroups().size());
+                    return String.format("(I:%d) (D:%d) [G:%d]", reduced.getAllGroupsConcepts().size(), reduced.getAllGroupsSourceConcepts().size(), reduced.getReducedGroups().size());
                 }
             };
         } else {
-            labelCreator = new GroupEntryLabelCreator<NDFTargetGroup>();
+            labelCreator = new GroupEntryLabelCreator<NDFTargetGroup>() {
+                public String getCountStr(NDFTargetGroup targetGroup) {                   
+                    return String.format("(I:%d) (D:%d)", targetGroup.getConceptCount(), targetGroup.getSourceConcepts().size());
+                }
+            };
         }
         
         BluGraph graph = new NDFTargetGraph(parentFrame, data, labelCreator);
