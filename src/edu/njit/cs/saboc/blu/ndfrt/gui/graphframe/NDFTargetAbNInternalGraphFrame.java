@@ -1,11 +1,11 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.graphframe;
 
-import edu.njit.cs.saboc.blu.core.abn.reduced.ReducingGroup;
 import edu.njit.cs.saboc.blu.core.graph.BluGraph;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.GroupEntryLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
+import edu.njit.cs.saboc.blu.ndfrt.abn.ReducedNDFTargetGroup;
 import edu.njit.cs.saboc.blu.ndfrt.graph.NDFTargetGraph;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.listeners.NDFTargetAbNGEPListener;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.listeners.NDFTargetGroupOptionsConfiguration;
@@ -38,7 +38,7 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
         if (data.isReduced()) {
             labelCreator = new GroupEntryLabelCreator<NDFTargetGroup>() {
                 public String getCountStr(NDFTargetGroup targetGroup) {
-                    ReducingGroup reduced = (ReducingGroup)targetGroup;
+                    ReducedNDFTargetGroup reduced = (ReducedNDFTargetGroup)targetGroup;
                     
                     if(reduced.getReducedGroups().isEmpty()) {
                         return String.format("(I:%d) (D:%d)", targetGroup.getConceptCount(), targetGroup.getSourceConcepts().size());
