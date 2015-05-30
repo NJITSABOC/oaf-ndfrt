@@ -9,7 +9,7 @@ import java.util.HashSet;
  *
  * @author Den
  */
-public class NDFConceptHierarchy extends SingleRootedHierarchy<NDFConcept> {
+public class NDFConceptHierarchy extends SingleRootedHierarchy<NDFConcept, NDFConceptHierarchy> {
     public NDFConceptHierarchy(NDFConcept root) {
         super(root);
     }
@@ -22,11 +22,15 @@ public class NDFConceptHierarchy extends SingleRootedHierarchy<NDFConcept> {
         super(root, hierarchy.children);
     }
     
-    public SingleRootedHierarchy<NDFConcept> getSubhierarchyRootedAt(NDFConcept root) {
+    public NDFConceptHierarchy getSubhierarchyRootedAt(NDFConcept root) {
         return new NDFConceptHierarchy(root, this.children);
     }
     
     public HashSet<NDFConcept> getConceptsInHierarchy() {
         return super.getNodesInHierarchy();
+    }
+    
+    public NDFConceptHierarchy createHierarchy(NDFConcept root) {
+        return new NDFConceptHierarchy(root);
     }
 }

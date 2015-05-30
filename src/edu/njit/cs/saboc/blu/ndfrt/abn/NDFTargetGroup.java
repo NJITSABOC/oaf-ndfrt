@@ -10,7 +10,7 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFTargetGroup extends TargetGroup<NDFConcept> {
+public class NDFTargetGroup extends TargetGroup<NDFConcept, NDFConceptHierarchy> {
     
     public NDFTargetGroup(int id, NDFConcept root, HashSet<Integer> parents, 
             NDFConceptHierarchy groupHierarchy, HashMap<NDFConcept, HashSet<NDFConcept>> incomingRelSources) {

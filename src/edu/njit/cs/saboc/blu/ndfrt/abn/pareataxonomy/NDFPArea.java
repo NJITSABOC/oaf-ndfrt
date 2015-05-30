@@ -1,19 +1,19 @@
 package edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy;
 
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.GenericPArea;
-import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.SingleRootedHierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
+import edu.njit.cs.saboc.blu.ndfrt.datastructure.NDFConceptHierarchy;
 import java.util.HashSet;
 
 /**
  *
  * @author Chris O
  */
-public class NDFPArea extends GenericPArea<NDFConcept, NDFRole, NDFPArea> {
+public class NDFPArea extends GenericPArea<NDFConcept, NDFRole, NDFConceptHierarchy, NDFPArea> {
     
     public NDFPArea(int id,
-            SingleRootedHierarchy<NDFConcept> conceptHierarchy, 
+            NDFConceptHierarchy conceptHierarchy, 
             HashSet<Integer> parentIds,
             HashSet<NDFRole> relationships) {
         

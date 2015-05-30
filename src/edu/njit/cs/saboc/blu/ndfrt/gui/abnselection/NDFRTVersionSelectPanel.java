@@ -2,6 +2,7 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.abnselection;
 
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetworkGenerator;
+import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRelationship;
 import edu.njit.cs.saboc.blu.ndfrt.datasource.NDFRTDataSource;
@@ -9,7 +10,9 @@ import edu.njit.cs.saboc.blu.ndfrt.datasource.NDFRTLoader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -46,8 +49,14 @@ public class NDFRTVersionSelectPanel extends JPanel {
                     
                     NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
                             dataSource.getRoleFromId(165356240921L), dataSource.getConceptFromId(165356241075L));
+
+                    HashMap<Integer, NDFTargetGroup> groups = (HashMap<Integer, NDFTargetGroup>)abn.getGroups();
                     
-                    abn = abn.getReduced(5, 3000);
+                    System.out.println("HIERARCHY CONCEPT COUNT: " + 
+                            dataSource.getConceptHierarchy().getSubhierarchyRootedAt(dataSource.getConceptFromId(165356241075L)).getNodesInHierarchy().size());
+
+                    //abn = abn.getReduced(20, 3000);
+  
                     
                     //NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
                     //        dataSource.getRoleFromId(165356240978L), dataSource.getConceptFromId(165356241521L));

@@ -15,8 +15,8 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetworkGenerator<NDFConcept, NDFTargetGroup, 
-        NDFTargetAbstractionNetwork, NDFRole> {
+public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetworkGenerator<NDFConcept, NDFRole, NDFConceptHierarchy, NDFTargetGroup, 
+        NDFTargetAbstractionNetwork> {
 
     private NDFRTDataSource dataSource;
     
@@ -28,14 +28,14 @@ public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetwo
         return (HashSet<GenericRelationship<NDFRole, NDFConcept>>)(HashSet<?>)concept.getAttributeRelationships(); // Hax
     }
 
-    public SingleRootedHierarchy<NDFConcept> getTargetHierarchy(NDFConcept root) {
+    public NDFConceptHierarchy getTargetHierarchy(NDFConcept root) {
         return dataSource.getConceptHierarchy().getSubhierarchyRootedAt(root);
     }
 
     public NDFTargetGroup createGroup(int id, NDFConcept root, HashSet<Integer> parentIds, 
-            SingleRootedHierarchy<NDFConcept> groupHierarchy, HashMap<NDFConcept, HashSet<NDFConcept>> incomingRelSources) {
+            NDFConceptHierarchy groupHierarchy, HashMap<NDFConcept, HashSet<NDFConcept>> incomingRelSources) {
         
-        return new NDFTargetGroup(id, root, parentIds, (NDFConceptHierarchy)groupHierarchy, incomingRelSources);
+        return new NDFTargetGroup(id, root, parentIds, groupHierarchy, incomingRelSources);
     }
 
     protected NDFTargetAbstractionNetwork createTargetAbstractionNetwork(
@@ -45,7 +45,7 @@ public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetwo
         return new NDFTargetAbstractionNetwork(targetGroup, new ArrayList<NDFTargetContainer>(), groups, groupHierarchy);
     }
     
-    protected SingleRootedHierarchy<NDFConcept> createGroupHierarchy(NDFConcept root) {
+    protected NDFConceptHierarchy createGroupHierarchy(NDFConcept root) {
         return new NDFConceptHierarchy(root);
     }
     

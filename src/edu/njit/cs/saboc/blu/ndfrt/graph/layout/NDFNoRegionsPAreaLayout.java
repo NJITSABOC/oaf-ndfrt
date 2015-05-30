@@ -14,6 +14,7 @@ import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFRegion;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
+import edu.njit.cs.saboc.blu.ndfrt.datastructure.NDFConceptHierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.graph.pareataxonomy.BluNDFArea;
 import edu.njit.cs.saboc.blu.ndfrt.graph.pareataxonomy.BluNDFPArea;
 import edu.njit.cs.saboc.blu.ndfrt.graph.pareataxonomy.BluNDFRegion;
@@ -34,7 +35,7 @@ import javax.swing.JLabel;
 public class NDFNoRegionsPAreaLayout extends GenericNoRegionsPAreaGraphLayout<
         NDFPAreaTaxonomy, NDFArea, NDFPArea, NDFRegion, 
         BluNDFArea, BluNDFPArea, BluNDFRegion,
-        NDFConcept, NDFRole> {
+        NDFConcept, NDFRole, NDFConceptHierarchy> {
 
     @Override
     protected BluNDFPArea createPAreaPanel(NDFPArea p, BluNDFRegion parent, int x, int y, int pAreaX, GraphGroupLevel pAreaLevel) {

@@ -12,7 +12,8 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFPAreaTaxonomy extends GenericPAreaTaxonomy<NDFPAreaTaxonomy, NDFPArea, NDFArea, NDFRegion, NDFConcept, NDFRole> {
+public class NDFPAreaTaxonomy extends GenericPAreaTaxonomy<NDFPAreaTaxonomy, NDFPArea, NDFArea, 
+        NDFRegion, NDFConcept, NDFRole, NDFConceptHierarchy> {
     
     public NDFPAreaTaxonomy(
             NDFConceptHierarchy conceptHierarchy,

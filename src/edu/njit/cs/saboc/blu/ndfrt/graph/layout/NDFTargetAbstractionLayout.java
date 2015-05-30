@@ -13,6 +13,8 @@ import edu.njit.cs.saboc.blu.core.graph.nodes.GenericGroupEntry;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetContainer;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
+import edu.njit.cs.saboc.blu.ndfrt.abn.ReducedNDFTargetGroup;
+import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.graph.targetabn.BluNDFTargetContainer;
 import edu.njit.cs.saboc.blu.ndfrt.graph.targetabn.BluNDFTargetGroup;
 import edu.njit.cs.saboc.blu.ndfrt.graph.targetabn.BluNDFTargetPartition;
@@ -23,6 +25,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map.Entry;
 import java.util.Queue;
 import javax.swing.JLabel;
 
@@ -100,16 +103,38 @@ public class NDFTargetAbstractionLayout extends BluGraphLayout<NDFTargetContaine
             }
         }
         
+        int level = 0;
+        
         for(ArrayList<NDFTargetGroup> levelGroups : groupLevels) {
+            
+            
             Collections.sort(levelGroups, new Comparator<NDFTargetGroup>() {
                 public int compare(NDFTargetGroup a, NDFTargetGroup b) {
-                    if(a.getConceptCount() != b.getConceptCount()) {
-                        return b.getConceptCount() - a.getConceptCount();
+                    int aConceptCount;
+                    
+                    
+                    if(a instanceof ReducedNDFTargetGroup) {
+                        aConceptCount = ((ReducedNDFTargetGroup)a).getAllGroupsConcepts().size();
+                    } else {
+                        aConceptCount = a.getConceptCount();
+                    }
+                    
+                    int bConceptCount;
+                    
+                    if (b instanceof ReducedNDFTargetGroup) {
+                        bConceptCount = ((ReducedNDFTargetGroup)b).getAllGroupsConcepts().size();
+                    } else {
+                        bConceptCount = b.getConceptCount();
+                    }
+                    
+                    if(aConceptCount != bConceptCount) {
+                        return bConceptCount - aConceptCount;
                     } else {
                         return a.getRoot().getName().compareToIgnoreCase(b.getRoot().getName());
                     }
                 }
             });
+            
         }
         
         int containerX = 0;  // The first area on each line is given an areaX value of 0.
@@ -127,7 +152,7 @@ public class NDFTargetAbstractionLayout extends BluGraphLayout<NDFTargetContaine
 
             int groupCount = groupLevel.size();
 
-            int groupEntriesWide = Math.min(20, groupCount);
+            int groupEntriesWide = Math.min(14, groupCount);
 
             int levelWidth = groupEntriesWide * (GenericGroupEntry.ENTRY_WIDTH + GraphLayoutConstants.GROUP_CHANNEL_WIDTH);
 
@@ -173,6 +198,16 @@ public class NDFTargetAbstractionLayout extends BluGraphLayout<NDFTargetContaine
 
             for (NDFTargetGroup group : groupLevel) {
                 
+                HashSet<NDFConcept> drugIngredients = new HashSet<NDFConcept>();
+                HashSet<NDFConcept> ppDrugs = new HashSet<NDFConcept>();
+                
+                for(Entry<NDFConcept, HashSet<NDFConcept>> entry : group.getGroupIncomingRelSources().entrySet()) {
+                    drugIngredients.add(entry.getKey());
+                    ppDrugs.addAll(entry.getValue());
+                }
+                
+                System.out.println(String.format("%s (I:%d) (D:%d)", group.getRoot().getName(), drugIngredients.size(), ppDrugs.size()));
+                
                 GraphGroupLevel currentClusterLevel = currentPartition.getGroupLevels().get(clusterY);
                 
                 BluNDFTargetGroup targetGroupEntry = createGroupPanel(group, currentPartition, x2, y2, clusterX, currentClusterLevel);
@@ -215,6 +250,9 @@ public class NDFTargetAbstractionLayout extends BluGraphLayout<NDFTargetContaine
 
             containerY++;    // Update the areaY variable to reflect the new row.
             containerX = 0;  // Reset the areaX variable.
+            
+            System.out.println(containerY);
+            System.out.println();
 
             addGraphLevel(new GraphLevel(containerY, graph,
                     generateUpperRowLanes(-5, GraphLayoutConstants.CONTAINER_ROW_HEIGHT - 7, 3, null))); // Add a level object to 

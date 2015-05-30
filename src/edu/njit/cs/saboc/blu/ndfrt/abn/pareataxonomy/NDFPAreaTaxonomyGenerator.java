@@ -15,7 +15,8 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator<NDFPAreaTaxonomy, NDFPArea, NDFArea, NDFRegion, NDFConcept, NDFRole> {
+public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator<NDFPAreaTaxonomy, NDFPArea, NDFArea, NDFRegion, 
+        NDFConcept, NDFRole, NDFConceptHierarchy> {
    
     private NDFConceptHierarchy hierarchy;
     
@@ -24,7 +25,7 @@ public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator<NDFPAreaTa
     }
     
     @Override
-    protected SingleRootedHierarchy<NDFConcept> getConceptHierarchy() {
+    protected NDFConceptHierarchy getConceptHierarchy() {
         return hierarchy;
     }
     
@@ -54,12 +55,12 @@ public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator<NDFPAreaTa
     }
 
     @Override
-    protected SingleRootedHierarchy<NDFConcept> initPAreaConceptHierarchy(NDFConcept root) {
+    protected NDFConceptHierarchy initPAreaConceptHierarchy(NDFConcept root) {
         return new NDFConceptHierarchy(root);
     }
 
     @Override
-    protected NDFPArea createPArea(int id, SingleRootedHierarchy<NDFConcept> pareaHierarchy, HashSet<Integer> parentIds, HashSet<NDFRole> relationships) {
+    protected NDFPArea createPArea(int id, NDFConceptHierarchy pareaHierarchy, HashSet<Integer> parentIds, HashSet<NDFRole> relationships) {
         return new NDFPArea(id, pareaHierarchy, parentIds, relationships);
     }
 
@@ -70,7 +71,7 @@ public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator<NDFPAreaTa
 
     @Override
     protected NDFPAreaTaxonomy createPAreaTaxonomy(
-            SingleRootedHierarchy<NDFConcept> conceptHierarchy, NDFPArea rootPArea, ArrayList<NDFArea> areas, 
+            NDFConceptHierarchy conceptHierarchy, NDFPArea rootPArea, ArrayList<NDFArea> areas, 
             HashMap<Integer, NDFPArea> pareas, HashMap<Integer, HashSet<Integer>> pareaHierarchy) {
        
             return new NDFPAreaTaxonomy((NDFConceptHierarchy)conceptHierarchy, rootPArea, areas, pareas, pareaHierarchy);
