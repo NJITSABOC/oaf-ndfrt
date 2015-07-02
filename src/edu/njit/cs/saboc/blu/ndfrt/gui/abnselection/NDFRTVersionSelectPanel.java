@@ -10,9 +10,9 @@ import edu.njit.cs.saboc.blu.ndfrt.datasource.NDFRTLoader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map.Entry;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -44,17 +44,39 @@ public class NDFRTVersionSelectPanel extends JPanel {
                             
                     NDFTargetAbstractionNetworkGenerator targetAbNGen = new NDFTargetAbstractionNetworkGenerator(dataSource);
 
-                    System.out.println("GENERATING TARGET ABN...");
+                    System.out.println("GENERATING IAbN...");
                     
-                    
-                    NDFTargetAbstractionNetwork abn = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
+                    // Create an new IAbN 
+                    // 165356240921L is has_ingredient
+                    // 165356241075L is Chemical ingredient concept (the root)
+                    NDFTargetAbstractionNetwork iAbN = targetAbNGen.deriveTargetAbstractionNetwork(concepts, 
                             dataSource.getRoleFromId(165356240921L), dataSource.getConceptFromId(165356241075L));
-
-                    HashMap<Integer, NDFTargetGroup> groups = (HashMap<Integer, NDFTargetGroup>)abn.getGroups();
+                    
+                    HashMap<Integer, NDFTargetGroup> groups = (HashMap<Integer, NDFTargetGroup>)iAbN.getGroups();
+                    
+                    Collection<NDFTargetGroup> ingredientGroups = groups.values();
+                                        
+                    System.out.println();
+                    System.out.println();
+                    
+                    ingredientGroups.forEach((NDFTargetGroup group) -> { 
+                        if(group.getParentIds().size() > 1) {
+                            String outStr = String.format("Ingredient Group has Multiple Parents: %s\t%d\t%d", 
+                                    group.getRoot().getName(), // Get the name of the root
+                                    group.getParentIds().size(), // Get the number of parents
+                                    group.getGroupIncomingRelSources().keySet().size()); // Get the number of ingredient concepts
+                            
+                            
+                            
+                            System.out.println(outStr);
+                        }
+                    });
                     
                     System.out.println("HIERARCHY CONCEPT COUNT: " + 
                             dataSource.getConceptHierarchy().getSubhierarchyRootedAt(dataSource.getConceptFromId(165356241075L)).getNodesInHierarchy().size());
 
+                    // Create an Aggregate IAbN
+                    // abn.getReduced(lowerBound, upperBound). Upper bound has no meaning.
                     //abn = abn.getReduced(20, 3000);
   
                     
@@ -63,7 +85,7 @@ public class NDFRTVersionSelectPanel extends JPanel {
                     
                     System.out.println("CREATING BLUGRAPH...");
                     
-                    displayListener.addNewTargetAbNGraphFrame(abn);
+                    displayListener.addNewTargetAbNGraphFrame(iAbN);
                     
                     
                     /*
