@@ -14,6 +14,6 @@ import java.util.ArrayList;
 public class BluNDFTargetGroup extends GenericGroupEntry {
     
     public BluNDFTargetGroup(NDFTargetGroup group, BluGraph g, int pX, GraphGroupLevel parent, ArrayList<GraphEdge> ie) {
-        super(group, g, null, pX, parent, ie, false);
+        super(group, g, null, pX, parent, ie);
     }
 }
