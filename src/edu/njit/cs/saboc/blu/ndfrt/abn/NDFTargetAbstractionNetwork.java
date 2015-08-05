@@ -9,7 +9,7 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFTargetAbstractionNetwork extends TargetAbstractionNetwork<NDFTargetGroup, NDFTargetAbstractionNetwork> {
+public class NDFTargetAbstractionNetwork extends TargetAbstractionNetwork<NDFTargetContainer, NDFTargetGroup, NDFTargetAbstractionNetwork> {
    
     public NDFTargetAbstractionNetwork(
             NDFTargetGroup rootGroup,

@@ -15,7 +15,12 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetworkGenerator<NDFConcept, NDFRole, NDFConceptHierarchy, NDFTargetGroup, 
+public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetworkGenerator<
+        NDFConcept, 
+        NDFRole, 
+        NDFConceptHierarchy,
+        NDFTargetContainer, 
+        NDFTargetGroup, 
         NDFTargetAbstractionNetwork> {
 
     private NDFRTDataSource dataSource;
