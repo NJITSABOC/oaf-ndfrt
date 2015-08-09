@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Chris O
  */
-public class BluNDFTargetGroup extends GenericGroupEntry {
+public class BluNDFTargetGroup extends GenericGroupEntry<NDFTargetGroup> {
     
     public BluNDFTargetGroup(NDFTargetGroup group, BluGraph g, int pX, GraphGroupLevel parent, ArrayList<GraphEdge> ie) {
         super(group, g, null, pX, parent, ie);

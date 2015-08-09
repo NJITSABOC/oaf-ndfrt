@@ -19,7 +19,6 @@ public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetwo
         NDFConcept, 
         NDFRole, 
         NDFConceptHierarchy,
-        NDFTargetContainer, 
         NDFTargetGroup, 
         NDFTargetAbstractionNetwork> {
 
@@ -47,7 +46,7 @@ public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetwo
             NDFTargetGroup targetGroup, HashMap<Integer, NDFTargetGroup> groups, 
             HashMap<Integer, HashSet<Integer>> groupHierarchy) {    
         
-        return new NDFTargetAbstractionNetwork(targetGroup, new ArrayList<NDFTargetContainer>(), groups, groupHierarchy);
+        return new NDFTargetAbstractionNetwork(targetGroup, groups, groupHierarchy);
     }
     
     protected NDFConceptHierarchy createGroupHierarchy(NDFConcept root) {
