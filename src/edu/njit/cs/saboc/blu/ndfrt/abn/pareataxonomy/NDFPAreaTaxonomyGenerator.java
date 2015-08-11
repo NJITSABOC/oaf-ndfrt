@@ -1,8 +1,8 @@
 package edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy;
 
+import edu.njit.cs.saboc.blu.core.abn.GroupHierarchy;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.PAreaTaxonomyGenerator;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.RelationshipEquality;
-import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.SingleRootedHierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRelationship;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
@@ -72,7 +72,7 @@ public class NDFPAreaTaxonomyGenerator extends PAreaTaxonomyGenerator<NDFPAreaTa
     @Override
     protected NDFPAreaTaxonomy createPAreaTaxonomy(
             NDFConceptHierarchy conceptHierarchy, NDFPArea rootPArea, ArrayList<NDFArea> areas, 
-            HashMap<Integer, NDFPArea> pareas, HashMap<Integer, HashSet<Integer>> pareaHierarchy) {
+            HashMap<Integer, NDFPArea> pareas, GroupHierarchy<NDFPArea> pareaHierarchy) {
        
             return new NDFPAreaTaxonomy((NDFConceptHierarchy)conceptHierarchy, rootPArea, areas, pareas, pareaHierarchy);
     }

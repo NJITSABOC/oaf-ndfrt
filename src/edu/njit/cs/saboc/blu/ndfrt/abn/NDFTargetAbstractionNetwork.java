@@ -1,8 +1,8 @@
 package edu.njit.cs.saboc.blu.ndfrt.abn;
 
+import edu.njit.cs.saboc.blu.core.abn.GroupHierarchy;
 import edu.njit.cs.saboc.blu.core.abn.targetbased.TargetAbstractionNetwork;
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  *
@@ -13,7 +13,7 @@ public class NDFTargetAbstractionNetwork extends TargetAbstractionNetwork<NDFTar
     public NDFTargetAbstractionNetwork(
             NDFTargetGroup rootGroup,
             HashMap<Integer, NDFTargetGroup> groups,
-            HashMap<Integer, HashSet<Integer>> groupHierarchy) {
+            GroupHierarchy<NDFTargetGroup> groupHierarchy) {
         
         super(rootGroup, groups, groupHierarchy);
     }

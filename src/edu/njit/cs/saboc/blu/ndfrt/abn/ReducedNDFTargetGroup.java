@@ -1,8 +1,8 @@
 
 package edu.njit.cs.saboc.blu.ndfrt.abn;
 
+import edu.njit.cs.saboc.blu.core.abn.GroupHierarchy;
 import edu.njit.cs.saboc.blu.core.abn.reduced.ReducingGroup;
-import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.ConceptGroupHierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import java.util.HashSet;
 
@@ -12,16 +12,16 @@ import java.util.HashSet;
  */
 public class ReducedNDFTargetGroup extends NDFTargetGroup implements ReducingGroup<NDFConcept, NDFTargetGroup> {
 
-    private ConceptGroupHierarchy<NDFTargetGroup> reducedGroupHierarchy;
+    private GroupHierarchy<NDFTargetGroup> reducedGroupHierarchy;
     
-    public ReducedNDFTargetGroup(NDFTargetGroup group, HashSet<Integer> parentIds, ConceptGroupHierarchy<NDFTargetGroup> reducedGroupHierarchy) {
+    public ReducedNDFTargetGroup(NDFTargetGroup group, HashSet<Integer> parentIds, GroupHierarchy<NDFTargetGroup> reducedGroupHierarchy) {
         
         super(group.getId(), (NDFConcept)group.getRoot(), parentIds, group.getGroupNDFConceptHierarchy(), group.getGroupIncomingRelSources());
         
         this.reducedGroupHierarchy = reducedGroupHierarchy;
     }
     
-    public ConceptGroupHierarchy<NDFTargetGroup> getReducedGroupHierarchy() {
+    public GroupHierarchy<NDFTargetGroup> getReducedGroupHierarchy() {
         return reducedGroupHierarchy;
     }
     

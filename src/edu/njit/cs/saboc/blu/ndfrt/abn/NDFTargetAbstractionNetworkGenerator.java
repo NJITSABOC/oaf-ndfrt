@@ -1,13 +1,12 @@
 package edu.njit.cs.saboc.blu.ndfrt.abn;
 
+import edu.njit.cs.saboc.blu.core.abn.GroupHierarchy;
 import edu.njit.cs.saboc.blu.core.abn.targetbased.GenericRelationship;
 import edu.njit.cs.saboc.blu.core.abn.targetbased.TargetAbstractionNetworkGenerator;
-import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.SingleRootedHierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
 import edu.njit.cs.saboc.blu.ndfrt.datasource.NDFRTDataSource;
 import edu.njit.cs.saboc.blu.ndfrt.datastructure.NDFConceptHierarchy;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -44,7 +43,7 @@ public class NDFTargetAbstractionNetworkGenerator extends TargetAbstractionNetwo
 
     protected NDFTargetAbstractionNetwork createTargetAbstractionNetwork(
             NDFTargetGroup targetGroup, HashMap<Integer, NDFTargetGroup> groups, 
-            HashMap<Integer, HashSet<Integer>> groupHierarchy) {    
+            GroupHierarchy<NDFTargetGroup> groupHierarchy) {    
         
         return new NDFTargetAbstractionNetwork(targetGroup, groups, groupHierarchy);
     }

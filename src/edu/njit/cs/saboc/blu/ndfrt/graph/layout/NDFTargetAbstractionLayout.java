@@ -88,11 +88,10 @@ public class NDFTargetAbstractionLayout extends BluGraphLayout<NDFTargetContaine
             
             groupLevels.get(depth).add(group);
 
-            HashSet<Integer> childrenIds = targetAbN.getGroupChildren(group.getId());
+            HashSet<NDFTargetGroup> childGroups = targetAbN.getChildGroups(group);
             
-            for(int childId : childrenIds) {
-                NDFTargetGroup childGroup = (NDFTargetGroup)targetAbN.getGroups().get(childId);
-                
+            for(NDFTargetGroup childGroup : childGroups) {
+
                 int parentCount = parentGroupCount.get(childGroup) - 1;
                 
                 if(parentCount == 0) {
