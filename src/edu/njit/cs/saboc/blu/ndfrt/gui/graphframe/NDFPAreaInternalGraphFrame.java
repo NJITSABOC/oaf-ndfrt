@@ -2,7 +2,8 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.graphframe;
 
 import edu.njit.cs.saboc.blu.core.graph.BluGraph;
 import edu.njit.cs.saboc.blu.core.graph.options.GraphOptions;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.GroupOptionsPanelConfiguration;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.BLUGraphConfiguration;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractGroupPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.AbNPainter;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.GroupEntryLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
@@ -54,10 +55,17 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
         
         BluGraph newGraph = new NDFPAreaBluGraph(parentFrame, data, areaGraph,conceptCountLabels, options, labelCreator);
 
-        initializeGraphTabs(newGraph, new AbNPainter(), 
-                null, 
-                new GroupOptionsPanelConfiguration() {
-                    
+        initializeGraphTabs(newGraph, new AbNPainter(),
+                null,
+                new BLUGraphConfiguration() {
+                    public boolean hasGroupDetailsPanel() {
+                        return false;
+                    }
+
+                    @Override
+                    public AbstractGroupPanel createGroupDetailsPanel() {
+                        return null;
+                    }
                 });
 
         updateHierarchyInfoLabel(data); 
