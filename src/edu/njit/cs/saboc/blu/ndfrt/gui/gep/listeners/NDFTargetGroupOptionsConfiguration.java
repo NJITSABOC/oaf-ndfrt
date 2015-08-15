@@ -2,7 +2,7 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.gep.listeners;
 
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.BLUGraphConfiguration;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractGroupPanel;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractNodePanel;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.gui.graphframe.NDFTargetAbNInternalGraphFrame;
 import javax.swing.JFrame;
@@ -26,7 +26,17 @@ public class NDFTargetGroupOptionsConfiguration extends BLUGraphConfiguration {
     }
 
     @Override
-    public AbstractGroupPanel createGroupDetailsPanel() {
+    public AbstractNodePanel createGroupDetailsPanel() {
+        return null;
+    }
+    
+    @Override
+    public boolean hasContainerDetailsPanel() {
+        return false;
+    }
+
+    @Override
+    public AbstractNodePanel createContainerDetailsPanel() {
         return null;
     }
 }
