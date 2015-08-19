@@ -39,4 +39,5 @@ public class NDFTargetGroupOptionsConfiguration extends BLUGraphConfiguration {
     public AbstractNodePanel createContainerDetailsPanel() {
         return null;
     }
+    
 }
