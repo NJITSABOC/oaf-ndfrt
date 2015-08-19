@@ -40,11 +40,11 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
                 public String getCountStr(NDFTargetGroup targetGroup) {
                     ReducedNDFTargetGroup reduced = (ReducedNDFTargetGroup)targetGroup;
                     
-                    if(reduced.getReducedGroups().isEmpty()) {
+                    if(reduced.getAggregatedGroups().isEmpty()) {
                         return String.format("(I:%d) (D:%d)", targetGroup.getConceptCount(), targetGroup.getSourceConcepts().size());
                     }
                     
-                    return String.format("(I:%d) (D:%d) [G:%d]", reduced.getAllGroupsConcepts().size(), reduced.getAllGroupsSourceConcepts().size(), reduced.getReducedGroups().size());
+                    return String.format("(I:%d) (D:%d) [G:%d]", reduced.getAllGroupsConcepts().size(), reduced.getAllGroupsSourceConcepts().size(), reduced.getAggregatedGroups().size());
                 }
             };
         } else {
