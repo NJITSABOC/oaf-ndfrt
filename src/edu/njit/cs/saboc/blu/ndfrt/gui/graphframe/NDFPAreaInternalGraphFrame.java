@@ -56,7 +56,6 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
         BluGraph newGraph = new NDFPAreaBluGraph(parentFrame, data, areaGraph,conceptCountLabels, options, labelCreator);
 
         initializeGraphTabs(newGraph, new AbNPainter(),
-                null,
                 new BLUGraphConfiguration() {
                     public boolean hasGroupDetailsPanel() {
                         return false;
