@@ -28,7 +28,7 @@ public class NDFPAreaBluGraph extends BluGraph {
 
         if (areaGraph) {
             layout = new NDFNoRegionsPAreaLayout(this, taxonomy);
-            ((NDFNoRegionsPAreaLayout)layout).doLayout(options, showConceptCountLabels);
+            ((NDFNoRegionsPAreaLayout)layout).doLayout(showConceptCountLabels);
         }
 
         partitionMenu = new JPopupMenu();

@@ -15,6 +15,7 @@ import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFRegion;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
 import edu.njit.cs.saboc.blu.ndfrt.datastructure.NDFConceptHierarchy;
+import edu.njit.cs.saboc.blu.ndfrt.graph.NDFPAreaTaxonomyConfiguration;
 import edu.njit.cs.saboc.blu.ndfrt.graph.pareataxonomy.BluNDFArea;
 import edu.njit.cs.saboc.blu.ndfrt.graph.pareataxonomy.BluNDFPArea;
 import edu.njit.cs.saboc.blu.ndfrt.graph.pareataxonomy.BluNDFRegion;
@@ -36,6 +37,10 @@ public class NDFNoRegionsPAreaLayout extends GenericNoRegionsPAreaGraphLayout<
         NDFPAreaTaxonomy, NDFArea, NDFPArea, NDFRegion, 
         BluNDFArea, BluNDFPArea, BluNDFRegion,
         NDFConcept, NDFRole, NDFConceptHierarchy> {
+    
+    public NDFNoRegionsPAreaLayout(BluGraph graph, NDFPAreaTaxonomy taxonomy) {
+        super(graph, taxonomy, new NDFPAreaTaxonomyConfiguration());
+    }
 
     @Override
     protected BluNDFPArea createPAreaPanel(NDFPArea p, BluNDFRegion parent, int x, int y, int pAreaX, GraphGroupLevel pAreaLevel) {
@@ -161,7 +166,5 @@ public class NDFNoRegionsPAreaLayout extends GenericNoRegionsPAreaGraphLayout<
         return createRegionLabel(taxonomy, ((NDFRegion)partition).getRelationships(), countStr, width, -1);
     }
     
-    public NDFNoRegionsPAreaLayout(BluGraph graph, NDFPAreaTaxonomy taxonomy) {
-        super(graph, taxonomy);
-    }
+
 }
