@@ -1,19 +1,13 @@
 package edu.njit.cs.saboc.blu.ndfrt.graph;
 
 import edu.njit.cs.saboc.blu.core.graph.BluGraph;
-import edu.njit.cs.saboc.blu.core.graph.ShowHideGroupEntryListener;
 import edu.njit.cs.saboc.blu.core.graph.options.GraphOptions;
-import edu.njit.cs.saboc.blu.core.gui.dialogs.ContainerResize;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.GroupEntryLabelCreator;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPArea;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
 import edu.njit.cs.saboc.blu.ndfrt.graph.layout.NDFNoRegionsPAreaLayout;
 import edu.njit.cs.saboc.blu.ndfrt.graph.pareataxonomy.BluNDFPArea;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 
 /**
  *
@@ -31,24 +25,6 @@ public class NDFPAreaBluGraph extends BluGraph {
             ((NDFNoRegionsPAreaLayout)layout).doLayout(showConceptCountLabels);
         }
 
-        partitionMenu = new JPopupMenu();
-        partitionMenu.setFocusable(true);
-
-        JMenuItem menuItem2 = new JMenuItem("Select PAreas to Show / Hide");
-        menuItem2.addActionListener(new ShowHideGroupEntryListener(this));
-
-        JMenuItem menuItem5 = new JMenuItem("Resize Region");
-
-        menuItem5.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent ae) {
-                new ContainerResize(parentFrame, currentPartition, NDFPAreaBluGraph.this);
-                partitionMenu.setVisible(false);
-            }
-        });
-
-        partitionMenu.add(menuItem2);
-        partitionMenu.add(menuItem5);
     }
 
     public NDFPAreaTaxonomy getPAreaHierarchyData() {
