@@ -25,8 +25,7 @@ public class NDFPAreaTaxonomy extends GenericPAreaTaxonomy<NDFPAreaTaxonomy, NDF
         super(conceptHierarchy, rootPArea, areas, pareas, pareaHierarchy);
     }
     
-    public NDFPAreaTaxonomy getReduced(int min, int max) {
+    public NDFPAreaTaxonomy getReduced(int min) {
         return null;
     }
-    
 }

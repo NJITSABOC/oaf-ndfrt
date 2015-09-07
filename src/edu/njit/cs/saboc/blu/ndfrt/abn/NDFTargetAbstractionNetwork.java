@@ -25,14 +25,14 @@ public class NDFTargetAbstractionNetwork extends TargetAbstractionNetwork<NDFTar
         this.dataSource = dataSource;
     }
     
-    public NDFTargetAbstractionNetwork getReduced(int smallest, int largest) {
+    public NDFTargetAbstractionNetwork getReduced(int smallest) {
         
         AggregateTargetAbNGenerator<NDFTargetGroup, ReducedNDFTargetGroup, NDFTargetAbstractionNetwork> aggregateAbNGenerator = 
                 new AggregateTargetAbNGenerator<>();
         
         return aggregateAbNGenerator.createReducedTargetAbN(this, 
                 new NDFTargetAbstractionNetworkGenerator(dataSource), 
-                new NDFReducedTargetAbNGenerator(), smallest, largest);
+                new NDFReducedTargetAbNGenerator(), smallest);
     }
 
 }
