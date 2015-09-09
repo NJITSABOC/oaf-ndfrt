@@ -18,6 +18,7 @@ public class NDFTargetGroupOptionsConfiguration extends BLUGraphConfiguration {
             final NDFTargetAbNInternalGraphFrame graphFrame,
             final NDFTargetAbstractionNetwork abn) {
 
+        super("Ingredient Abstraction Network");
     }
     
     @Override

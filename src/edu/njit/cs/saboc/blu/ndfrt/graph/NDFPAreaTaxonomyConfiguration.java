@@ -18,7 +18,6 @@ import java.util.Comparator;
  */
 public class NDFPAreaTaxonomyConfiguration extends PAreaTaxonomyConfiguration {
 
-
     @Override
     public ArrayList getAreaRelationships(GenericArea area) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -87,4 +86,15 @@ public class NDFPAreaTaxonomyConfiguration extends PAreaTaxonomyConfiguration {
     public SingleRootedHierarchy getAggregatedPAreaHierarchy(GenericPArea aggregatePArea) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public ArrayList getConceptSelectedListeners() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList getGroupSelectedListeners() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
