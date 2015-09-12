@@ -2,7 +2,7 @@
 package edu.njit.cs.saboc.blu.ndfrt.abn;
 
 import edu.njit.cs.saboc.blu.core.abn.GroupHierarchy;
-import edu.njit.cs.saboc.blu.core.abn.reduced.AggregateableConceptGroup;
+import edu.njit.cs.saboc.blu.core.abn.aggregate.AggregateableConceptGroup;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import java.util.HashSet;
 

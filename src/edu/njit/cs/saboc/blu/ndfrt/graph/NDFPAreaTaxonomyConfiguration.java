@@ -8,6 +8,7 @@ import edu.njit.cs.saboc.blu.core.abn.disjoint.nodes.DisjointGenericConceptGroup
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.GenericArea;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.GenericPArea;
 import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.SingleRootedHierarchy;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.listeners.EntitySelectionListener;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.PAreaTaxonomyConfiguration;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -17,6 +18,11 @@ import java.util.Comparator;
  * @author Chris O
  */
 public class NDFPAreaTaxonomyConfiguration extends PAreaTaxonomyConfiguration {
+
+    @Override
+    public EntitySelectionListener getParentGroupListener() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public ArrayList getAreaRelationships(GenericArea area) {
@@ -86,15 +92,14 @@ public class NDFPAreaTaxonomyConfiguration extends PAreaTaxonomyConfiguration {
     public SingleRootedHierarchy getAggregatedPAreaHierarchy(GenericPArea aggregatePArea) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+ 
     @Override
-    public ArrayList getConceptSelectedListeners() {
+    public EntitySelectionListener getGroupConceptListListener() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList getGroupSelectedListeners() {
+    public EntitySelectionListener getChildGroupListener() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
