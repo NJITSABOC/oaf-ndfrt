@@ -4,6 +4,7 @@ import edu.njit.cs.saboc.blu.core.graph.BluGraph;
 import edu.njit.cs.saboc.blu.core.graph.options.GraphOptions;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.BLUGraphConfiguration;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractNodePanel;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.AbstractAbNDetailsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.AbNPainter;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.GroupEntryLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
@@ -57,6 +58,11 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
 
         initializeGraphTabs(newGraph, new AbNPainter(),
                 new BLUGraphConfiguration("Partial-area Taxonomy") {
+                    @Override
+                    public AbstractAbNDetailsPanel createAbNDetailsPanel() {
+                        return null;
+                    }
+
                     public boolean hasGroupDetailsPanel() {
                         return false;
                     }
@@ -77,7 +83,7 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
                     }
                 });
 
-        updateHierarchyInfoLabel(data); 
+        updateHierarchyInfoLabel(data);
     }
 }
 

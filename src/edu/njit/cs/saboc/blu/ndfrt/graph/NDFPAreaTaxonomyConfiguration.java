@@ -19,6 +19,7 @@ import java.util.Comparator;
  */
 public class NDFPAreaTaxonomyConfiguration extends PAreaTaxonomyConfiguration {
 
+
     @Override
     public EntitySelectionListener getParentGroupListener() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -100,6 +101,31 @@ public class NDFPAreaTaxonomyConfiguration extends PAreaTaxonomyConfiguration {
 
     @Override
     public EntitySelectionListener getChildGroupListener() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public String getContainerHelpDescription(GenericGroupContainer container) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getGroupHelpDescriptions(GenericConceptGroup group) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public String getAbNName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getAbNSummary() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public String getAbNHelpDescription() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -3,6 +3,7 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.gep.listeners;
 
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.BLUGraphConfiguration;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractNodePanel;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.AbstractAbNDetailsPanel;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.gui.graphframe.NDFTargetAbNInternalGraphFrame;
 import javax.swing.JFrame;
@@ -20,6 +21,12 @@ public class NDFTargetGroupOptionsConfiguration extends BLUGraphConfiguration {
 
         super("Ingredient Abstraction Network");
     }
+    
+    @Override
+    public AbstractAbNDetailsPanel createAbNDetailsPanel() {
+        return null;
+    }
+
     
     @Override
     public boolean hasGroupDetailsPanel() {
