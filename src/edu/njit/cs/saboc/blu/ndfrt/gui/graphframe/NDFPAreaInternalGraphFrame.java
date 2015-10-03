@@ -2,15 +2,13 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.graphframe;
 
 import edu.njit.cs.saboc.blu.core.graph.BluGraph;
 import edu.njit.cs.saboc.blu.core.graph.options.GraphOptions;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.BLUGraphConfiguration;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractNodePanel;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.AbstractAbNDetailsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.AbNPainter;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.GroupEntryLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPArea;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
 import edu.njit.cs.saboc.blu.ndfrt.graph.NDFPAreaBluGraph;
+import edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration.NDFPAreaTaxonomyConfiguration;
 import javax.swing.JFrame;
 
 /**
@@ -56,32 +54,7 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
         
         BluGraph newGraph = new NDFPAreaBluGraph(parentFrame, data, areaGraph,conceptCountLabels, options, labelCreator);
 
-        initializeGraphTabs(newGraph, new AbNPainter(),
-                new BLUGraphConfiguration("Partial-area Taxonomy") {
-                    @Override
-                    public AbstractAbNDetailsPanel createAbNDetailsPanel() {
-                        return null;
-                    }
-
-                    public boolean hasGroupDetailsPanel() {
-                        return false;
-                    }
-
-                    @Override
-                    public AbstractNodePanel createGroupDetailsPanel() {
-                        return null;
-                    }
-
-                    @Override
-                    public boolean hasContainerDetailsPanel() {
-                        return false;
-                    }
-
-                    @Override
-                    public AbstractNodePanel createContainerDetailsPanel() {
-                        return null;
-                    }
-                });
+        initializeGraphTabs(newGraph, new AbNPainter(), new NDFPAreaTaxonomyConfiguration());
 
         updateHierarchyInfoLabel(data);
     }

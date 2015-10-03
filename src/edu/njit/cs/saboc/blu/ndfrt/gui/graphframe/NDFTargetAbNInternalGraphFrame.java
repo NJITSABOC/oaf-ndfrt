@@ -7,7 +7,7 @@ import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
 import edu.njit.cs.saboc.blu.ndfrt.abn.ReducedNDFTargetGroup;
 import edu.njit.cs.saboc.blu.ndfrt.graph.NDFTargetGraph;
-import edu.njit.cs.saboc.blu.ndfrt.gui.gep.listeners.NDFTargetGroupOptionsConfiguration;
+import edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.targetabn.configuration.NDFTargetAbNConfiguration;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.utils.drawing.TargetAbNPainter;
 import javax.swing.JFrame;
 
@@ -58,7 +58,7 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
 
         initializeGraphTabs(graph, 
                 new TargetAbNPainter(), 
-                new NDFTargetGroupOptionsConfiguration(parentFrame, this, data));
+                new NDFTargetAbNConfiguration());
 
         updateHierarchyInfoLabel(data);
 
