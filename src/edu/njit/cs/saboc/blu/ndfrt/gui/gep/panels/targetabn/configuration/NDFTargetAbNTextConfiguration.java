@@ -40,6 +40,7 @@ public class NDFTargetAbNTextConfiguration implements BLUAbNTextConfiguration<ND
     public String getConceptTypeName(boolean plural) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 
     @Override
     public String getGroupHelpDescriptions(NDFTargetGroup group) {
@@ -48,6 +49,11 @@ public class NDFTargetAbNTextConfiguration implements BLUAbNTextConfiguration<ND
 
     @Override
     public String getConceptName(NDFConcept concept) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public String getConceptUniqueIdentifier(NDFConcept concept) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
