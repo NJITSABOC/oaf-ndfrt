@@ -10,6 +10,7 @@ import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
 import edu.njit.cs.saboc.blu.ndfrt.graph.NDFPAreaBluGraph;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration.NDFPAreaTaxonomyConfiguration;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -40,23 +41,35 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
     public final void replaceInternalFrameDataWith(NDFPAreaTaxonomy data,
             boolean areaGraph, boolean conceptCountLabels, GraphOptions options) {
         
-        GroupEntryLabelCreator labelCreator;
-        
-        if(data.isReduced()) {
-            labelCreator = new GroupEntryLabelCreator<NDFPArea>() {
-                public String getCountStr(NDFPArea parea) {
-                    return String.format("(%d) [%d]", parea.getConceptCount(), 0);
+        Thread loadThread = new Thread(new Runnable() {
+            public void run() {
+                gep.showLoading();
+                
+                GroupEntryLabelCreator labelCreator;
+
+                if (data.isReduced()) {
+                    labelCreator = new GroupEntryLabelCreator<NDFPArea>() {
+                        public String getCountStr(NDFPArea parea) {
+                            return String.format("(%d) [%d]", parea.getConceptCount(), 0);
+                        }
+                    };
+                } else {
+                    labelCreator = new GroupEntryLabelCreator<NDFPArea>();
                 }
-            };
-        } else {
-            labelCreator = new GroupEntryLabelCreator<NDFPArea>();
-        }
+
+                BluGraph newGraph = new NDFPAreaBluGraph(parentFrame, data, areaGraph, conceptCountLabels, options, labelCreator);
+                
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        displayAbstractionNetwork(newGraph, new AbNPainter(), new NDFPAreaTaxonomyConfiguration());
+
+                        updateHierarchyInfoLabel(data);
+                    }
+                });
+            }
+        });
         
-        BluGraph newGraph = new NDFPAreaBluGraph(parentFrame, data, areaGraph,conceptCountLabels, options, labelCreator);
-
-        initializeGraphTabs(newGraph, new AbNPainter(), new NDFPAreaTaxonomyConfiguration());
-
-        updateHierarchyInfoLabel(data);
+        loadThread.start();
     }
 }
 
