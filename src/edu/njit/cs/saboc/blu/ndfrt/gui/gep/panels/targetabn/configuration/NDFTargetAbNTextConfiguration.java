@@ -12,6 +12,11 @@ import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 public class NDFTargetAbNTextConfiguration implements BLUAbNTextConfiguration<NDFTargetAbstractionNetwork, NDFTargetGroup, NDFConcept> {
 
     @Override
+    public String getGroupRootUniqueIdentifier(NDFTargetGroup group) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public String getAbNName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -11,7 +11,10 @@ import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configura
  */
 public class NDFPAreaTaxonomyTextConfiguration extends BLUGenericPAreaTaxonomyTextConfiguration {
 
-
+    @Override
+    public String getGroupRootUniqueIdentifier(GenericConceptGroup group) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public String getDisjointGroupName(DisjointGenericConceptGroup group) {
