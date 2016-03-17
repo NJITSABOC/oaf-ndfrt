@@ -9,7 +9,7 @@ import java.util.HashSet;
  *
  * @author Den
  */
-public class NDFConceptHierarchy extends SingleRootedHierarchy<NDFConcept, NDFConceptHierarchy> {
+public class NDFConceptHierarchy extends SingleRootedHierarchy<NDFConcept> {
     public NDFConceptHierarchy(NDFConcept root) {
         super(root);
     }
