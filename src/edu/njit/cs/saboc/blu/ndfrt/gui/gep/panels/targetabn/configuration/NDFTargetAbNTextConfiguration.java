@@ -33,7 +33,7 @@ public class NDFTargetAbNTextConfiguration implements BLUAbNTextConfiguration<ND
 
     @Override
     public String getAbNTypeName(boolean plural) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Ingredient Abstraction Network";
     }
 
     @Override

@@ -22,16 +22,16 @@ public class NDFTargetAbNUIConfiguration extends BLUAbNUIConfiguration<NDFTarget
 
     @Override
     public AbstractAbNDetailsPanel<NDFTargetAbstractionNetwork> createAbNDetailsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public boolean hasGroupDetailsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public AbstractNodePanel<NDFTargetGroup, NDFConcept, NDFTargetAbNConfiguration> createGroupDetailsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 }
