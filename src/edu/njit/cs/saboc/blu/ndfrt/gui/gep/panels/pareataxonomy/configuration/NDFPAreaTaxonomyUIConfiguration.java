@@ -1,7 +1,7 @@
 
 package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration;
 
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractNodePanel;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeInformationPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.AbstractAbNDetailsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.BLUGenericPAreaTaxonomyUIConfiguration;
 
@@ -21,7 +21,7 @@ public class NDFPAreaTaxonomyUIConfiguration extends BLUGenericPAreaTaxonomyUICo
     }
 
     @Override
-    public AbstractNodePanel createContainerDetailsPanel() {
+    public NodeInformationPanel createContainerDetailsPanel() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -36,7 +36,7 @@ public class NDFPAreaTaxonomyUIConfiguration extends BLUGenericPAreaTaxonomyUICo
     }
 
     @Override
-    public AbstractNodePanel createGroupDetailsPanel() {
+    public NodeInformationPanel createGroupDetailsPanel() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
