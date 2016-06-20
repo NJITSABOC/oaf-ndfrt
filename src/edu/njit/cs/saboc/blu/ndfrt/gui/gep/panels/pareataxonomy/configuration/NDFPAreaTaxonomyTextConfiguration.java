@@ -2,7 +2,7 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration;
 
 import SnomedShared.generic.GenericConceptGroup;
 import SnomedShared.generic.GenericGroupContainer;
-import edu.njit.cs.saboc.blu.core.abn.disjoint.nodes.DisjointGenericConceptGroup;
+import edu.njit.cs.saboc.blu.core.abn.disjoint.DisjointNode;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.BLUGenericPAreaTaxonomyTextConfiguration;
 
 /**
@@ -17,7 +17,7 @@ public class NDFPAreaTaxonomyTextConfiguration extends BLUGenericPAreaTaxonomyTe
     }
 
     @Override
-    public String getDisjointGroupName(DisjointGenericConceptGroup group) {
+    public String getDisjointGroupName(DisjointNode group) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

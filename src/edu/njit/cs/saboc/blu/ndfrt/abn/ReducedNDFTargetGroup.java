@@ -2,7 +2,7 @@
 package edu.njit.cs.saboc.blu.ndfrt.abn;
 
 import edu.njit.cs.saboc.blu.core.abn.GroupHierarchy;
-import edu.njit.cs.saboc.blu.core.abn.aggregate.AggregateableConceptGroup;
+import edu.njit.cs.saboc.blu.core.abn.aggregate.AggregateNode;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import java.util.HashSet;
 
@@ -10,7 +10,7 @@ import java.util.HashSet;
  *
  * @author Chris O
  */
-public class ReducedNDFTargetGroup extends NDFTargetGroup implements AggregateableConceptGroup<NDFConcept, NDFTargetGroup> {
+public class ReducedNDFTargetGroup extends NDFTargetGroup implements AggregateNode<NDFConcept, NDFTargetGroup> {
 
     private GroupHierarchy<NDFTargetGroup> reducedGroupHierarchy;
     

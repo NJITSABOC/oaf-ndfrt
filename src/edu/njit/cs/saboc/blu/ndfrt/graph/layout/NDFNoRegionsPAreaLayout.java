@@ -6,7 +6,7 @@ import edu.njit.cs.saboc.blu.core.graph.edges.GraphEdge;
 import edu.njit.cs.saboc.blu.core.graph.edges.GraphGroupLevel;
 import edu.njit.cs.saboc.blu.core.graph.edges.GraphLevel;
 import edu.njit.cs.saboc.blu.core.graph.layout.GraphLayoutUtilities;
-import edu.njit.cs.saboc.blu.core.graph.nodes.GenericGroupEntry;
+import edu.njit.cs.saboc.blu.core.graph.nodes.SinglyRootedNodeEntry;
 import edu.njit.cs.saboc.blu.core.graph.pareataxonomy.GenericNoRegionsPAreaGraphLayout;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFArea;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPArea;
@@ -47,10 +47,10 @@ public class NDFNoRegionsPAreaLayout extends GenericNoRegionsPAreaGraphLayout<
          BluNDFPArea pAreaPanel = new BluNDFPArea(p, graph, parent, pAreaX, pAreaLevel, new ArrayList<GraphEdge>());
 
         //Make sure this panel dimensions will fit on the graph, stretch the graph if necessary
-        graph.stretchGraphToFitPanel(x, y, GenericGroupEntry.ENTRY_WIDTH, GenericGroupEntry.ENTRY_HEIGHT);
+        graph.stretchGraphToFitPanel(x, y, SinglyRootedNodeEntry.ENTRY_WIDTH, SinglyRootedNodeEntry.ENTRY_HEIGHT);
 
         //Setup the panel's dimensions, etc.
-        pAreaPanel.setBounds(x, y, GenericGroupEntry.ENTRY_WIDTH, GenericGroupEntry.ENTRY_HEIGHT);
+        pAreaPanel.setBounds(x, y, SinglyRootedNodeEntry.ENTRY_WIDTH, SinglyRootedNodeEntry.ENTRY_HEIGHT);
 
         parent.add(pAreaPanel, 0);
 

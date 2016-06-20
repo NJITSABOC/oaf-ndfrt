@@ -1,6 +1,6 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.gep.utils.drawing;
 
-import edu.njit.cs.saboc.blu.core.graph.nodes.GenericContainerEntry;
+import edu.njit.cs.saboc.blu.core.graph.nodes.PartitionedNodeEntry;
 import edu.njit.cs.saboc.blu.core.graph.nodes.GenericPartitionEntry;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.AbNPainter;
 import java.awt.BasicStroke;
@@ -14,7 +14,7 @@ import java.awt.Stroke;
  * @author Chris O
  */
 public class TargetAbNPainter extends AbNPainter {
-    public void paintContainerAtPoint(Graphics2D g2d, GenericContainerEntry entry, Point p, double scale) {
+    public void paintContainerAtPoint(Graphics2D g2d, PartitionedNodeEntry entry, Point p, double scale) {
         Stroke savedStroke = g2d.getStroke();
 
         g2d.setStroke(new BasicStroke(2));

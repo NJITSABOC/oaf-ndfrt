@@ -9,7 +9,7 @@ import edu.njit.cs.saboc.blu.core.graph.edges.GraphLane;
 import edu.njit.cs.saboc.blu.core.graph.edges.GraphLevel;
 import edu.njit.cs.saboc.blu.core.graph.layout.BluGraphLayout;
 import edu.njit.cs.saboc.blu.core.graph.layout.GraphLayoutConstants;
-import edu.njit.cs.saboc.blu.core.graph.nodes.GenericGroupEntry;
+import edu.njit.cs.saboc.blu.core.graph.nodes.SinglyRootedNodeEntry;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetContainer;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
@@ -153,12 +153,12 @@ public class NDFTargetAbstractionLayout extends BluGraphLayout<NDFTargetContaine
 
             int groupEntriesWide = Math.min(14, groupCount);
 
-            int levelWidth = groupEntriesWide * (GenericGroupEntry.ENTRY_WIDTH + GraphLayoutConstants.GROUP_CHANNEL_WIDTH);
+            int levelWidth = groupEntriesWide * (SinglyRootedNodeEntry.ENTRY_WIDTH + GraphLayoutConstants.GROUP_CHANNEL_WIDTH);
 
             width += levelWidth + 20;
 
             int height = (int) (Math.ceil((double) groupCount / groupEntriesWide))
-                    * (GenericGroupEntry.ENTRY_HEIGHT + GraphLayoutConstants.GROUP_ROW_HEIGHT);
+                    * (SinglyRootedNodeEntry.ENTRY_HEIGHT + GraphLayoutConstants.GROUP_ROW_HEIGHT);
 
             width += 20;
             height += 60 + GraphLayoutConstants.GROUP_ROW_HEIGHT;
@@ -221,7 +221,7 @@ public class NDFTargetAbstractionLayout extends BluGraphLayout<NDFTargetContaine
                 currentClusterLevel.addGroupEntry(targetGroupEntry);
 
                 if ((i + 1) % groupEntriesWide == 0 && i < groupLevel.size() - 1) {
-                    y2 += GenericGroupEntry.ENTRY_HEIGHT + GraphLayoutConstants.GROUP_ROW_HEIGHT;
+                    y2 += SinglyRootedNodeEntry.ENTRY_HEIGHT + GraphLayoutConstants.GROUP_ROW_HEIGHT;
                     x2 = (int) (1.5 * GraphLayoutConstants.GROUP_CHANNEL_WIDTH);
                     clusterX = 0;
                     
@@ -236,7 +236,7 @@ public class NDFTargetAbstractionLayout extends BluGraphLayout<NDFTargetContaine
                                 GraphLayoutConstants.GROUP_ROW_HEIGHT - 5, 3, containerEntry));
                     }
                 } else {
-                    x2 += (GenericGroupEntry.ENTRY_WIDTH + GraphLayoutConstants.GROUP_CHANNEL_WIDTH);
+                    x2 += (SinglyRootedNodeEntry.ENTRY_WIDTH + GraphLayoutConstants.GROUP_CHANNEL_WIDTH);
                     clusterX++;
                     groupX[clusterY]++;
                 }
@@ -265,10 +265,10 @@ public class NDFTargetAbstractionLayout extends BluGraphLayout<NDFTargetContaine
         BluNDFTargetGroup targetGroupEntry = new BluNDFTargetGroup(p, graph, groupX, clusterLevel, new ArrayList<GraphEdge>());
 
         //Make sure this panel dimensions will fit on the graph, stretch the graph if necessary
-        graph.stretchGraphToFitPanel(x, y, GenericGroupEntry.ENTRY_WIDTH, GenericGroupEntry.ENTRY_HEIGHT);
+        graph.stretchGraphToFitPanel(x, y, SinglyRootedNodeEntry.ENTRY_WIDTH, SinglyRootedNodeEntry.ENTRY_HEIGHT);
 
         //Setup the panel's dimensions, etc.
-        targetGroupEntry.setBounds(x, y, GenericGroupEntry.ENTRY_WIDTH, GenericGroupEntry.ENTRY_HEIGHT);
+        targetGroupEntry.setBounds(x, y, SinglyRootedNodeEntry.ENTRY_WIDTH, SinglyRootedNodeEntry.ENTRY_HEIGHT);
 
         parent.add(targetGroupEntry, 0);
 
