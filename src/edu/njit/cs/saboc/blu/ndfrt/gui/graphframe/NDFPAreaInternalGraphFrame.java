@@ -3,7 +3,7 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.graphframe;
 import edu.njit.cs.saboc.blu.core.graph.BluGraph;
 import edu.njit.cs.saboc.blu.core.graph.options.GraphOptions;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.AbNPainter;
-import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.GroupEntryLabelCreator;
+import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.SinglyRootedNodeLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPArea;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
@@ -45,16 +45,16 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
             public void run() {
                 gep.showLoading();
                 
-                GroupEntryLabelCreator labelCreator;
+                SinglyRootedNodeLabelCreator labelCreator;
 
                 if (data.isReduced()) {
-                    labelCreator = new GroupEntryLabelCreator<NDFPArea>() {
+                    labelCreator = new SinglyRootedNodeLabelCreator<NDFPArea>() {
                         public String getCountStr(NDFPArea parea) {
                             return String.format("(%d) [%d]", parea.getConceptCount(), 0);
                         }
                     };
                 } else {
-                    labelCreator = new GroupEntryLabelCreator<NDFPArea>();
+                    labelCreator = new SinglyRootedNodeLabelCreator<NDFPArea>();
                 }
 
                 BluGraph newGraph = new NDFPAreaBluGraph(parentFrame, data, areaGraph, conceptCountLabels, options, labelCreator);

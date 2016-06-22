@@ -1,7 +1,7 @@
 package edu.njit.cs.saboc.blu.ndfrt.graph;
 
 import edu.njit.cs.saboc.blu.core.graph.BluGraph;
-import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.GroupEntryLabelCreator;
+import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.SinglyRootedNodeLabelCreator;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
 import edu.njit.cs.saboc.blu.ndfrt.graph.layout.NDFTargetAbstractionLayout;
@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  */
 public class NDFTargetGraph extends BluGraph {
 
-    public NDFTargetGraph(final JFrame parentFrame, final NDFTargetAbstractionNetwork hierarchyData, GroupEntryLabelCreator<NDFTargetGroup> labelCreator) {
+    public NDFTargetGraph(final JFrame parentFrame, final NDFTargetAbstractionNetwork hierarchyData, SinglyRootedNodeLabelCreator<NDFTargetGroup> labelCreator) {
 
         super(hierarchyData, true, true, labelCreator);
 

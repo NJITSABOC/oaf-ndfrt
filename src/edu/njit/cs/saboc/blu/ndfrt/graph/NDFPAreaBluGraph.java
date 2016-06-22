@@ -2,7 +2,7 @@ package edu.njit.cs.saboc.blu.ndfrt.graph;
 
 import edu.njit.cs.saboc.blu.core.graph.BluGraph;
 import edu.njit.cs.saboc.blu.core.graph.options.GraphOptions;
-import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.GroupEntryLabelCreator;
+import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.SinglyRootedNodeLabelCreator;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPArea;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
 import edu.njit.cs.saboc.blu.ndfrt.graph.layout.NDFNoRegionsPAreaLayout;
@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 public class NDFPAreaBluGraph extends BluGraph {
 
     public NDFPAreaBluGraph(final JFrame parentFrame, final NDFPAreaTaxonomy taxonomy, boolean areaGraph, 
-            boolean conceptLabels, GraphOptions options, GroupEntryLabelCreator<NDFPArea> labelCreator) {
+            boolean conceptLabels, GraphOptions options, SinglyRootedNodeLabelCreator<NDFPArea> labelCreator) {
         
         super(taxonomy, areaGraph, conceptLabels, labelCreator);
 
