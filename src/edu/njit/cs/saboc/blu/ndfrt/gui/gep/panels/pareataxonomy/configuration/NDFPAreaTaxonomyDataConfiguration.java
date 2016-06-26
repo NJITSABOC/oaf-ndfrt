@@ -6,7 +6,7 @@ import edu.njit.cs.saboc.blu.core.abn.disjoint.DisjointAbstractionNetwork;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.Area;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.PArea;
 import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.SingleRootedHierarchy;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.BLUGenericPAreaTaxonomyDataConfiguration;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.PAreaTaxonomyDataConfiguration;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -14,7 +14,7 @@ import java.util.Comparator;
  *
  * @author Chris O
  */
-public class NDFPAreaTaxonomyDataConfiguration extends BLUGenericPAreaTaxonomyDataConfiguration {
+public class NDFPAreaTaxonomyDataConfiguration extends PAreaTaxonomyDataConfiguration {
 
     @Override
     public ArrayList getAreaRelationships(Area area) {

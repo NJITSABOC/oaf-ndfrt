@@ -3,13 +3,13 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration;
 
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeDashboardPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.AbstractAbNDetailsPanel;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.BLUGenericPAreaTaxonomyUIConfiguration;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.PAreaTaxonomyUIConfiguration;
 
 /**
  *
  * @author Chris O
  */
-public class NDFPAreaTaxonomyUIConfiguration extends BLUGenericPAreaTaxonomyUIConfiguration {
+public class NDFPAreaTaxonomyUIConfiguration extends PAreaTaxonomyUIConfiguration {
     
     public NDFPAreaTaxonomyUIConfiguration() {
         super(null);

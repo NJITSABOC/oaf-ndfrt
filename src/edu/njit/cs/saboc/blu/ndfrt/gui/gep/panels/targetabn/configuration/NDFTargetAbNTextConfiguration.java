@@ -1,6 +1,6 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.targetabn.configuration;
 
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.configuration.text.BLUAbNTextConfiguration;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.configuration.AbNTextConfiguration;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
@@ -9,7 +9,7 @@ import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
  *
  * @author Chris O
  */
-public class NDFTargetAbNTextConfiguration implements BLUAbNTextConfiguration<NDFTargetAbstractionNetwork, NDFTargetGroup, NDFConcept> {
+public class NDFTargetAbNTextConfiguration implements AbNTextConfiguration<NDFTargetAbstractionNetwork, NDFTargetGroup, NDFConcept> {
 
     @Override
     public String getGroupRootUniqueIdentifier(NDFTargetGroup group) {

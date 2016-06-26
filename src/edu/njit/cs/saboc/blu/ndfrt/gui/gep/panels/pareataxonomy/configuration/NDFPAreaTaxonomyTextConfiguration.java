@@ -3,13 +3,13 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration;
 import SnomedShared.generic.GenericConceptGroup;
 import SnomedShared.generic.GenericGroupContainer;
 import edu.njit.cs.saboc.blu.core.abn.disjoint.DisjointNode;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.BLUGenericPAreaTaxonomyTextConfiguration;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.PAreaTaxonomyTextConfiguration;
 
 /**
  *
  * @author Chris O
  */
-public class NDFPAreaTaxonomyTextConfiguration extends BLUGenericPAreaTaxonomyTextConfiguration {
+public class NDFPAreaTaxonomyTextConfiguration extends PAreaTaxonomyTextConfiguration {
 
     @Override
     public String getGroupRootUniqueIdentifier(GenericConceptGroup group) {
