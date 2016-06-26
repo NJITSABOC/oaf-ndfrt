@@ -7,7 +7,7 @@ import edu.njit.cs.saboc.blu.core.graph.edges.GraphGroupLevel;
 import edu.njit.cs.saboc.blu.core.graph.edges.GraphLevel;
 import edu.njit.cs.saboc.blu.core.graph.layout.GraphLayoutUtilities;
 import edu.njit.cs.saboc.blu.core.graph.nodes.SinglyRootedNodeEntry;
-import edu.njit.cs.saboc.blu.core.graph.pareataxonomy.GenericNoRegionsPAreaGraphLayout;
+import edu.njit.cs.saboc.blu.core.graph.pareataxonomy.NoRegionsPAreaTaxonomyLayout;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFArea;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPArea;
 import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
@@ -33,7 +33,7 @@ import javax.swing.JLabel;
  *
  * @author Chris O
  */
-public class NDFNoRegionsPAreaLayout extends GenericNoRegionsPAreaGraphLayout<
+public class NDFNoRegionsPAreaLayout extends NoRegionsPAreaTaxonomyLayout<
         NDFPAreaTaxonomy, NDFArea, NDFPArea, NDFRegion, 
         BluNDFArea, BluNDFPArea, BluNDFRegion,
         NDFConcept, NDFRole, NDFConceptHierarchy> {
