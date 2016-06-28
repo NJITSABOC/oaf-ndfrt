@@ -1,9 +1,11 @@
 
 package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration;
 
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeDashboardPanel;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.AbstractAbNDetailsPanel;
+import edu.njit.cs.saboc.blu.core.abn.node.Node;
+import edu.njit.cs.saboc.blu.core.gui.dialogs.concepthierarchy.ConceptPainter;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractNodeOptionsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.PAreaTaxonomyUIConfiguration;
+import edu.njit.cs.saboc.blu.ndfrt.gui.abnselection.NDFDisplayFrameListener;
 
 /**
  *
@@ -11,33 +13,62 @@ import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configura
  */
 public class NDFPAreaTaxonomyUIConfiguration extends PAreaTaxonomyUIConfiguration {
     
-    public NDFPAreaTaxonomyUIConfiguration() {
-        super(null);
+    private final NDFPAreaTaxonomyConfiguration config;
+    private final NDFDisplayFrameListener listener;
+    
+    public NDFPAreaTaxonomyUIConfiguration(NDFPAreaTaxonomyConfiguration config, NDFDisplayFrameListener listener) {
+        super(config, new NDFPAreaTaxonomyListenerConfiguration());
+        
+        this.config = config;
+        this.listener = listener;
     }
 
     @Override
-    public boolean hasContainerDetailsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public AbstractNodeOptionsPanel getPartitionedNodeOptionsPanel() {
+        return new AbstractNodeOptionsPanel() {
+
+            @Override
+            public void enableOptionsForNode(Node node) {
+                
+            }
+
+            @Override
+            public void setContents(Node node) {
+               
+            }
+
+            @Override
+            public void clearContents() {
+              
+            }
+        };
     }
 
     @Override
-    public NodeDashboardPanel createContainerDetailsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public AbstractNodeOptionsPanel getNodeOptionsPanel() {
+        return new AbstractNodeOptionsPanel() {
+
+            @Override
+            public void enableOptionsForNode(Node node) {
+               
+            }
+
+            @Override
+            public void setContents(Node node) {
+               
+            }
+
+            @Override
+            public void clearContents() {
+                
+            }
+        };
     }
 
     @Override
-    public AbstractAbNDetailsPanel createAbNDetailsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ConceptPainter getConceptHierarchyPainter() {
+        return new ConceptPainter();
     }
-
-    @Override
-    public boolean hasGroupDetailsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public NodeDashboardPanel createGroupDetailsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

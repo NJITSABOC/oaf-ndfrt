@@ -1,9 +1,9 @@
 package edu.njit.cs.saboc.blu.ndfrt.datasource;
 
+import edu.njit.cs.saboc.blu.core.ontology.ConceptHierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRelationship;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
-import edu.njit.cs.saboc.blu.ndfrt.datastructure.NDFConceptHierarchy;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ public class NDFRTLoader {
         
         HashMap<Long, NDFRole> relationships = loadRelationshipTypes(location, versionNumber);
         
-        NDFConceptHierarchy hierarchy = loadConceptHierarchy(location, versionNumber, concepts);
+        ConceptHierarchy hierarchy = loadConceptHierarchy(location, versionNumber, concepts);
         
         initializeRelationships(location, versionNumber, concepts, relationships);
         
@@ -28,7 +28,7 @@ public class NDFRTLoader {
     
     private HashMap<Long, NDFConcept> loadConcepts(String location, long versionNumber) {
 
-        HashMap<Long, NDFConcept> concepts = new HashMap<Long, NDFConcept>();
+        HashMap<Long, NDFConcept> concepts = new HashMap<>();
 
         concepts.put(0L, new NDFConcept(0, "NDF RT ROOT (not a real concept)"));
 
@@ -60,7 +60,7 @@ public class NDFRTLoader {
     }
     
     private HashMap<Long, NDFRole> loadRelationshipTypes(String location, long versionNumber) {
-        HashMap<Long, NDFRole> roles = new HashMap<Long, NDFRole>();
+        HashMap<Long, NDFRole> roles = new HashMap<>();
         
         try {
             Scanner scanner = new Scanner(new File(location + "/DTS_ROLE_TYPE_ARCHIVE.full"));
@@ -89,8 +89,8 @@ public class NDFRTLoader {
         return roles;
     }
     
-    private NDFConceptHierarchy loadConceptHierarchy(String location, long versionNumber, HashMap<Long, NDFConcept> concepts) {
-        NDFConceptHierarchy conceptHierarchy = new NDFConceptHierarchy(concepts.get(0L));
+    private ConceptHierarchy loadConceptHierarchy(String location, long versionNumber, HashMap<Long, NDFConcept> concepts) {
+        ConceptHierarchy conceptHierarchy = new ConceptHierarchy(concepts.get(0L));
 
         try {
             Scanner scanner = new Scanner(new File(location + "/DTS_DIRECT_SUPS_ARCHIVE.full"));
@@ -138,7 +138,7 @@ public class NDFRTLoader {
                     long typeGID = Long.parseLong(parts[5]);
                     long targetGID = Long.parseLong(parts[6]);
 
-                    concepts.get(sourceGID).addRelationship(new NDFRelationship(roles.get(typeGID), concepts.get(targetGID)));
+                    concepts.get(sourceGID).addAttributeRelationship(new NDFRelationship(roles.get(typeGID), concepts.get(targetGID)));
                 }
             }
 

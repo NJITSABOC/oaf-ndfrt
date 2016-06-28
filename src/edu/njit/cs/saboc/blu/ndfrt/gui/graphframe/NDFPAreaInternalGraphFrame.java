@@ -1,14 +1,15 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.graphframe;
 
+import edu.njit.cs.saboc.blu.core.abn.node.SinglyRootedNode;
+import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.AggregatePArea;
+import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.PAreaTaxonomy;
 import edu.njit.cs.saboc.blu.core.graph.BluGraph;
-import edu.njit.cs.saboc.blu.core.graph.options.GraphOptions;
+import edu.njit.cs.saboc.blu.core.graph.pareataxonomy.PAreaBluGraph;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.AbNPainter;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.SinglyRootedNodeLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
-import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPArea;
-import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
-import edu.njit.cs.saboc.blu.ndfrt.graph.NDFPAreaBluGraph;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration.NDFPAreaTaxonomyConfiguration;
+import edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration.NDFPAreaTaxonomyConfigurationFactory;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -18,28 +19,23 @@ import javax.swing.SwingUtilities;
  */
 public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
 
-    public NDFPAreaInternalGraphFrame(final JFrame parentFrame, final NDFPAreaTaxonomy data,
-            boolean areaGraph, boolean conceptCounts) {
+    public NDFPAreaInternalGraphFrame(
+            JFrame parentFrame, 
+            PAreaTaxonomy data) {
 
-        super(parentFrame, "NDF RT Partial-area Taxonomy");
+        super(parentFrame, "NDF-RT Partial-area Taxonomy");
         
-        replaceInternalFrameDataWith(data, areaGraph, conceptCounts, null);
+        replaceInternalFrameDataWith(data);
     }
 
-    public NDFPAreaBluGraph getGraph() {
-        return (NDFPAreaBluGraph)super.getGraph();
-    }
-
-    private void updateHierarchyInfoLabel(NDFPAreaTaxonomy data) {
-        
+    private void updateHierarchyInfoLabel(PAreaTaxonomy data) {
         setHierarchyInfoText(String.format("Areas: %d | Partial-areas: %d | Classes: %d",
                 data.getAreas().size(), 
-                data.getGroups().keySet().size(), 
-                data.getConceptHierarchy().getNodesInHierarchy().size()));
+                data.getPAreas().size(),
+                data.getSourceHierarchy().size()));
     }
 
-    public final void replaceInternalFrameDataWith(NDFPAreaTaxonomy data,
-            boolean areaGraph, boolean conceptCountLabels, GraphOptions options) {
+    public final void replaceInternalFrameDataWith(PAreaTaxonomy taxonomy) {
         
         Thread loadThread = new Thread(new Runnable() {
             public void run() {
@@ -47,23 +43,27 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
                 
                 SinglyRootedNodeLabelCreator labelCreator;
 
-                if (data.isReduced()) {
-                    labelCreator = new SinglyRootedNodeLabelCreator<NDFPArea>() {
-                        public String getCountStr(NDFPArea parea) {
-                            return String.format("(%d) [%d]", parea.getConceptCount(), 0);
+                if (taxonomy.isAggregated()) {
+                    labelCreator = new SinglyRootedNodeLabelCreator() {
+                        public String getCountStr(SinglyRootedNode node) {
+                            
+                            AggregatePArea parea = (AggregatePArea)node;
+                            return String.format("(%d) [%d]", parea.getConceptCount(), parea.getAggregatedNodes().size());
                         }
                     };
                 } else {
-                    labelCreator = new SinglyRootedNodeLabelCreator<NDFPArea>();
+                    labelCreator = new SinglyRootedNodeLabelCreator();
                 }
+                
+                NDFPAreaTaxonomyConfiguration config = NDFPAreaTaxonomyConfigurationFactory.getConfigurationFor(taxonomy, null);
 
-                BluGraph newGraph = new NDFPAreaBluGraph(parentFrame, data, areaGraph, conceptCountLabels, options, labelCreator);
+                BluGraph newGraph = new PAreaBluGraph(parentFrame, taxonomy, labelCreator, config);
                 
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        displayAbstractionNetwork(newGraph, new AbNPainter(), new NDFPAreaTaxonomyConfiguration());
+                        displayAbstractionNetwork(newGraph, new AbNPainter(), config);
 
-                        updateHierarchyInfoLabel(data);
+                        updateHierarchyInfoLabel(taxonomy);
                     }
                 });
             }

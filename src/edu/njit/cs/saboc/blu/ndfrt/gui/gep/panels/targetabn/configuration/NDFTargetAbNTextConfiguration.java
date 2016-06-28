@@ -1,19 +1,16 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.targetabn.configuration;
 
+import edu.njit.cs.saboc.blu.core.abn.node.Node;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.configuration.AbNTextConfiguration;
-import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
-import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
-import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 
 /**
  *
  * @author Chris O
  */
-public class NDFTargetAbNTextConfiguration implements AbNTextConfiguration<NDFTargetAbstractionNetwork, NDFTargetGroup, NDFConcept> {
-
-    @Override
-    public String getGroupRootUniqueIdentifier(NDFTargetGroup group) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class NDFTargetAbNTextConfiguration implements AbNTextConfiguration {
+    
+    public NDFTargetAbNTextConfiguration() {
+        
     }
 
     @Override
@@ -33,11 +30,11 @@ public class NDFTargetAbNTextConfiguration implements AbNTextConfiguration<NDFTa
 
     @Override
     public String getAbNTypeName(boolean plural) {
-        return "Ingredient Abstraction Network";
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getGroupTypeName(boolean plural) {
+    public String getNodeTypeName(boolean plural) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -45,26 +42,21 @@ public class NDFTargetAbNTextConfiguration implements AbNTextConfiguration<NDFTa
     public String getConceptTypeName(boolean plural) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String getParentConceptTypeName(boolean plural) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getChildConceptTypeName(boolean plural) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getNodeHelpDescription(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-
-    @Override
-    public String getGroupHelpDescriptions(NDFTargetGroup group) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getConceptName(NDFConcept concept) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
-    public String getConceptUniqueIdentifier(NDFConcept concept) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getGroupName(NDFTargetGroup group) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

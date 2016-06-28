@@ -1,37 +1,44 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.targetabn.configuration;
 
+import edu.njit.cs.saboc.blu.core.gui.dialogs.concepthierarchy.ConceptPainter;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.configuration.AbNUIConfiguration;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.configuration.AbNListenerConfiguration;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractNodeOptionsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeDashboardPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.AbstractAbNDetailsPanel;
-import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
-import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
-import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 
 /**
  *
  * @author Chris O
  */
-public class NDFTargetAbNUIConfiguration extends AbNUIConfiguration<NDFTargetAbstractionNetwork, 
-        NDFTargetGroup, NDFConcept, NDFTargetAbNConfiguration, 
-        AbNListenerConfiguration<NDFTargetAbstractionNetwork, NDFTargetGroup, NDFConcept>> {
+public class NDFTargetAbNUIConfiguration extends AbNUIConfiguration {
     
     public NDFTargetAbNUIConfiguration() {
-        super(null);
+        super(new NDFTargetAbNListenerConfiguration());
     }
 
     @Override
-    public AbstractAbNDetailsPanel<NDFTargetAbstractionNetwork> createAbNDetailsPanel() {
-        return null;
+    public AbstractNodeOptionsPanel getNodeOptionsPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ConceptPainter getConceptHierarchyPainter() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public AbstractAbNDetailsPanel createAbNDetailsPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean hasGroupDetailsPanel() {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public NodeDashboardPanel<NDFTargetGroup, NDFConcept, NDFTargetAbNConfiguration> createGroupDetailsPanel() {
-        return null;
+    public NodeDashboardPanel createGroupDetailsPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

@@ -1,8 +1,8 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.abnselection;
 
+import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.PAreaTaxonomy;
+import edu.njit.cs.saboc.blu.core.abn.targetbased.TargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.FrameCreationListener;
-import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
-import edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy.NDFPAreaTaxonomy;
 import edu.njit.cs.saboc.blu.ndfrt.gui.graphframe.NDFPAreaInternalGraphFrame;
 import edu.njit.cs.saboc.blu.ndfrt.gui.graphframe.NDFTargetAbNInternalGraphFrame;
 import javax.swing.JFrame;
@@ -13,13 +13,13 @@ import javax.swing.JFrame;
  */
 public abstract class NDFDisplayFrameListener implements FrameCreationListener {
     
-    private JFrame mainFrame;
+    private final JFrame mainFrame;
     
     public NDFDisplayFrameListener(JFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
     
-    public NDFTargetAbNInternalGraphFrame addNewTargetAbNGraphFrame(NDFTargetAbstractionNetwork data) {
+    public NDFTargetAbNInternalGraphFrame addNewTargetAbNGraphFrame(TargetAbstractionNetwork data) {
         NDFTargetAbNInternalGraphFrame igf = new NDFTargetAbNInternalGraphFrame(mainFrame, data);
 
         this.displayFrame(igf);
@@ -27,8 +27,8 @@ public abstract class NDFDisplayFrameListener implements FrameCreationListener {
         return igf;
     }
     
-    public NDFPAreaInternalGraphFrame addNewPAreaTaxonomyGraphGraph(NDFPAreaTaxonomy taxonomy) {
-        NDFPAreaInternalGraphFrame igf = new NDFPAreaInternalGraphFrame(mainFrame, taxonomy, true, false);
+    public NDFPAreaInternalGraphFrame addNewPAreaTaxonomyGraphGraph(PAreaTaxonomy taxonomy) {
+        NDFPAreaInternalGraphFrame igf = new NDFPAreaInternalGraphFrame(mainFrame, taxonomy);
         
         this.displayFrame(igf);
         

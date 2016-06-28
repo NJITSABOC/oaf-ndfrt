@@ -1,12 +1,13 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.graphframe;
 
+import edu.njit.cs.saboc.blu.core.abn.node.Node;
+import edu.njit.cs.saboc.blu.core.abn.targetbased.AggregateTargetGroup;
+import edu.njit.cs.saboc.blu.core.abn.targetbased.TargetAbstractionNetwork;
+import edu.njit.cs.saboc.blu.core.abn.targetbased.TargetGroup;
 import edu.njit.cs.saboc.blu.core.graph.BluGraph;
+import edu.njit.cs.saboc.blu.core.graph.targetabn.TargetBluGraph;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.SinglyRootedNodeLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
-import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetAbstractionNetwork;
-import edu.njit.cs.saboc.blu.ndfrt.abn.NDFTargetGroup;
-import edu.njit.cs.saboc.blu.ndfrt.abn.ReducedNDFTargetGroup;
-import edu.njit.cs.saboc.blu.ndfrt.graph.NDFTargetGraph;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.targetabn.configuration.NDFTargetAbNConfiguration;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.utils.drawing.TargetAbNPainter;
 import javax.swing.JFrame;
@@ -15,7 +16,7 @@ import javax.swing.SwingUtilities;
 public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
 
 
-    public NDFTargetAbNInternalGraphFrame(final JFrame parentFrame, final NDFTargetAbstractionNetwork data) {
+    public NDFTargetAbNInternalGraphFrame(final JFrame parentFrame, final TargetAbstractionNetwork data) {
         super(parentFrame, "NDF RT Ingredient Summary");
 
         this.setTitle("TEST FRAME");
@@ -23,49 +24,52 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
         replaceInternalFrameDataWith(data);
     }
     
-    public NDFTargetGraph getGraph() {
-        return (NDFTargetGraph)super.getGraph();
+    public TargetBluGraph getGraph() {
+        return (TargetBluGraph)super.getGraph();
     }
 
-    private void updateHierarchyInfoLabel(NDFTargetAbstractionNetwork data) {               
+    private void updateHierarchyInfoLabel(TargetAbstractionNetwork data) {               
         setHierarchyInfoText("TEST");
     }
 
-    public void replaceInternalFrameDataWith(NDFTargetAbstractionNetwork data) {
+    public final void replaceInternalFrameDataWith(TargetAbstractionNetwork targetAbN) {
 
         Thread loadThread = new Thread(() -> {
             gep.showLoading();
             
             SinglyRootedNodeLabelCreator labelCreator;
 
-            if (data.isReduced()) {
-                labelCreator = new SinglyRootedNodeLabelCreator<NDFTargetGroup>() {
-                    public String getCountStr(NDFTargetGroup targetGroup) {
-                        ReducedNDFTargetGroup reduced = (ReducedNDFTargetGroup) targetGroup;
+            if (targetAbN.isAggregated()) {
+                labelCreator = new SinglyRootedNodeLabelCreator () {
+                    public String getCountStr(Node node) {
+                        AggregateTargetGroup aggregateGroup = (AggregateTargetGroup) node;
 
-                        if (reduced.getAggregatedGroups().isEmpty()) {
-                            return String.format("(I:%d) (D:%d)", targetGroup.getConceptCount(), targetGroup.getSourceConcepts().size());
+                        if (aggregateGroup.getAggregatedNodes().isEmpty()) {
+                            return String.format("(I:%d) (D:%d)", aggregateGroup.getConceptCount(), aggregateGroup.getIncomingRelationshipSources().size());
                         }
 
-                        return String.format("(I:%d) (D:%d) [G:%d]", reduced.getAllGroupsConcepts().size(), reduced.getAllGroupsSourceConcepts().size(), reduced.getAggregatedGroups().size());
+                        return String.format("(I:%d) (D:%d) [G:%d]", 
+                                aggregateGroup.getConceptCount(), 
+                                aggregateGroup.getIncomingRelationshipSources().size(), 
+                                aggregateGroup.getAggregatedNodes().size());
                     }
                 };
             } else {
-                labelCreator = new SinglyRootedNodeLabelCreator<NDFTargetGroup>() {
-                    public String getCountStr(NDFTargetGroup targetGroup) {
-                        return String.format("(I:%d) (D:%d)", targetGroup.getConceptCount(), targetGroup.getSourceConcepts().size());
+                labelCreator = new SinglyRootedNodeLabelCreator() {
+                    public String getCountStr(TargetGroup targetGroup) {
+                        return String.format("(I:%d) (D:%d)", targetGroup.getConceptCount(), targetGroup.getIncomingRelationshipSources().size());
                     }
                 };
             }
 
-            BluGraph graph = new NDFTargetGraph(parentFrame, data, labelCreator);
+            BluGraph graph = new TargetBluGraph(parentFrame, targetAbN, labelCreator);
 
             SwingUtilities.invokeLater(() -> {
                 displayAbstractionNetwork(graph,
                         new TargetAbNPainter(),
-                        new NDFTargetAbNConfiguration());
+                        new NDFTargetAbNConfiguration(targetAbN));
 
-                updateHierarchyInfoLabel(data);
+                updateHierarchyInfoLabel(targetAbN);
 
                 tabbedPane.validate();
                 tabbedPane.repaint();
