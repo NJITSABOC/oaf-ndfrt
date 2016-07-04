@@ -19,11 +19,11 @@ public class NDFRTLoader {
         
         HashMap<Long, NDFRole> relationships = loadRelationshipTypes(location, versionNumber);
         
-        ConceptHierarchy hierarchy = loadConceptHierarchy(location, versionNumber, concepts);
+        NDFConceptHierarchy hierarchy = loadConceptHierarchy(location, versionNumber, concepts);
         
         initializeRelationships(location, versionNumber, concepts, relationships);
         
-        return new NDFRTDataSource(hierarchy, concepts, relationships);
+        return new NDFRTDataSource(hierarchy, relationships);
     }
     
     private HashMap<Long, NDFConcept> loadConcepts(String location, long versionNumber) {
@@ -89,8 +89,8 @@ public class NDFRTLoader {
         return roles;
     }
     
-    private ConceptHierarchy loadConceptHierarchy(String location, long versionNumber, HashMap<Long, NDFConcept> concepts) {
-        ConceptHierarchy conceptHierarchy = new ConceptHierarchy(concepts.get(0L));
+    private NDFConceptHierarchy loadConceptHierarchy(String location, long versionNumber, HashMap<Long, NDFConcept> concepts) {
+        NDFConceptHierarchy conceptHierarchy = new NDFConceptHierarchy(concepts.get(0L));
 
         try {
             Scanner scanner = new Scanner(new File(location + "/DTS_DIRECT_SUPS_ARCHIVE.full"));

@@ -29,7 +29,7 @@ public class NDFRTEntityNameUtils {
         }
     }
     
-    public static String getRelationshipTypeName(boolean plural) {
+    public static String getPropertyTypeName(boolean plural) {
         if(plural) {
             return "Roles";
         } else {

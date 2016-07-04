@@ -44,4 +44,8 @@ public class NDFPAreaTaxonomyTextConfiguration extends PAreaTaxonomyTextConfigur
         return "*** AREA HELP TEXT ***";
     }
 
+    @Override
+    public String getPropertyTypeName(boolean plural) {
+        return NDFRTEntityNameUtils.getPropertyTypeName(plural);
+    }
 }

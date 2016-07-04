@@ -57,6 +57,10 @@ public class NDFTargetAbNTextConfiguration implements AbNTextConfiguration {
     public String getNodeHelpDescription(Node node) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public String getPropertyTypeName(boolean plural) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
