@@ -4,8 +4,8 @@ package edu.njit.cs.saboc.blu.ndfrt.abn.pareataxonomy;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.InheritableProperty;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.InheritableProperty.InheritanceType;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.PAreaTaxonomyFactory;
+import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.Hierarchy;
 import edu.njit.cs.saboc.blu.core.ontology.Concept;
-import edu.njit.cs.saboc.blu.core.ontology.ConceptHierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRelationship;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
@@ -18,23 +18,21 @@ import java.util.Set;
  *
  * @author Chris O
  */
-public class NDFRTPAreaTaxonomyFactory implements PAreaTaxonomyFactory {
+public class NDFRTPAreaTaxonomyFactory extends PAreaTaxonomyFactory {
     
     private final Map<Concept, Set<InheritableProperty>> properties = new HashMap<>();
     
-    public NDFRTPAreaTaxonomyFactory(ConceptHierarchy hierarchy) {
+    public NDFRTPAreaTaxonomyFactory(Hierarchy<NDFConcept> hierarchy) {
         
-        Map<Concept, Set<NDFRole>> uniqueRoles = new HashMap<>();
+        Map<NDFConcept, Set<NDFRole>> uniqueRoles = new HashMap<>();
         
-        hierarchy.getConceptsInHierarchy().forEach( (concept) -> {
-            NDFConcept ndfConcept = (NDFConcept)concept;
+        hierarchy.getNodesInHierarchy().forEach( (concept) -> {
+            Set<NDFRelationship> rels = concept.getAttributeRelationships();
             
-            Set<NDFRelationship> rels = ndfConcept.getAttributeRelationships();
-            
-            uniqueRoles.put(ndfConcept, new HashSet<>());
+            uniqueRoles.put(concept, new HashSet<>());
             
             rels.forEach( (rel) -> {
-                uniqueRoles.get(ndfConcept).add(rel.getType());
+                uniqueRoles.get(concept).add(rel.getType());
             });
         });
         
@@ -44,7 +42,7 @@ public class NDFRTPAreaTaxonomyFactory implements PAreaTaxonomyFactory {
 
             Set<NDFRole> parentRoles = new HashSet<>();
 
-            Set<Concept> parents = hierarchy.getParents(sourceConcept);
+            Set<NDFConcept> parents = hierarchy.getParents(sourceConcept);
 
             parents.forEach((parent) -> {
                 parentRoles.addAll(uniqueRoles.get(parent));

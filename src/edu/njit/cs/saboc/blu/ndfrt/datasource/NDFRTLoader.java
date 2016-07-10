@@ -1,6 +1,6 @@
 package edu.njit.cs.saboc.blu.ndfrt.datasource;
 
-import edu.njit.cs.saboc.blu.core.ontology.ConceptHierarchy;
+import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.Hierarchy;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRelationship;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
@@ -19,7 +19,7 @@ public class NDFRTLoader {
         
         HashMap<Long, NDFRole> relationships = loadRelationshipTypes(location, versionNumber);
         
-        NDFConceptHierarchy hierarchy = loadConceptHierarchy(location, versionNumber, concepts);
+        Hierarchy<NDFConcept> hierarchy = loadConceptHierarchy(location, versionNumber, concepts);
         
         initializeRelationships(location, versionNumber, concepts, relationships);
         
@@ -89,8 +89,8 @@ public class NDFRTLoader {
         return roles;
     }
     
-    private NDFConceptHierarchy loadConceptHierarchy(String location, long versionNumber, HashMap<Long, NDFConcept> concepts) {
-        NDFConceptHierarchy conceptHierarchy = new NDFConceptHierarchy(concepts.get(0L));
+    private Hierarchy<NDFConcept> loadConceptHierarchy(String location, long versionNumber, HashMap<Long, NDFConcept> concepts) {
+        Hierarchy<NDFConcept> conceptHierarchy = new Hierarchy<>(concepts.get(0L));
 
         try {
             Scanner scanner = new Scanner(new File(location + "/DTS_DIRECT_SUPS_ARCHIVE.full"));

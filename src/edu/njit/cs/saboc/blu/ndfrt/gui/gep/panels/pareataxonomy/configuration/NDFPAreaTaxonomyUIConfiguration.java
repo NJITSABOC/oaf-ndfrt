@@ -3,7 +3,7 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration;
 
 import edu.njit.cs.saboc.blu.core.abn.node.Node;
 import edu.njit.cs.saboc.blu.core.gui.dialogs.concepthierarchy.ConceptPainter;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.AbstractNodeOptionsPanel;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeOptionsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.PAreaTaxonomyUIConfiguration;
 import edu.njit.cs.saboc.blu.ndfrt.gui.abnselection.NDFDisplayFrameListener;
 
@@ -24,13 +24,8 @@ public class NDFPAreaTaxonomyUIConfiguration extends PAreaTaxonomyUIConfiguratio
     }
 
     @Override
-    public AbstractNodeOptionsPanel getPartitionedNodeOptionsPanel() {
-        return new AbstractNodeOptionsPanel() {
-
-            @Override
-            public void enableOptionsForNode(Node node) {
-                
-            }
+    public NodeOptionsPanel getPartitionedNodeOptionsPanel() {
+        return new NodeOptionsPanel() {
 
             @Override
             public void setContents(Node node) {
@@ -45,13 +40,8 @@ public class NDFPAreaTaxonomyUIConfiguration extends PAreaTaxonomyUIConfiguratio
     }
 
     @Override
-    public AbstractNodeOptionsPanel getNodeOptionsPanel() {
-        return new AbstractNodeOptionsPanel() {
-
-            @Override
-            public void enableOptionsForNode(Node node) {
-               
-            }
+    public NodeOptionsPanel getNodeOptionsPanel() {
+        return new NodeOptionsPanel() {
 
             @Override
             public void setContents(Node node) {
@@ -69,6 +59,4 @@ public class NDFPAreaTaxonomyUIConfiguration extends PAreaTaxonomyUIConfiguratio
     public ConceptPainter getConceptHierarchyPainter() {
         return new ConceptPainter();
     }
-    
-    
 }

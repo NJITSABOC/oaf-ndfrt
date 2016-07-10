@@ -1,5 +1,6 @@
 package edu.njit.cs.saboc.blu.ndfrt.datasource;
 
+import edu.njit.cs.saboc.blu.core.datastructure.hierarchy.Hierarchy;
 import edu.njit.cs.saboc.blu.core.ontology.Ontology;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
@@ -16,12 +17,12 @@ public class NDFRTDataSource extends Ontology {
     
     private final Map<Long, NDFRole> roles;
     
-    public NDFRTDataSource(NDFConceptHierarchy conceptHierarchy, Map<Long, NDFRole> roles) {
+    public NDFRTDataSource(Hierarchy<NDFConcept> conceptHierarchy, Map<Long, NDFRole> roles) {
         super(conceptHierarchy);
 
         this.concepts = new HashMap<>();
         
-        conceptHierarchy.getConceptsInHierarchy().forEach( (concept) -> {
+        conceptHierarchy.getNodesInHierarchy().forEach( (concept) -> {
             concepts.put(concept.getID(), concept);
         });
         
