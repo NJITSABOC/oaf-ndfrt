@@ -26,7 +26,7 @@ public class NDFRTPAreaTaxonomyFactory extends PAreaTaxonomyFactory {
         
         Map<NDFConcept, Set<NDFRole>> uniqueRoles = new HashMap<>();
         
-        hierarchy.getNodesInHierarchy().forEach( (concept) -> {
+        hierarchy.getNodes().forEach( (concept) -> {
             Set<NDFRelationship> rels = concept.getAttributeRelationships();
             
             uniqueRoles.put(concept, new HashSet<>());

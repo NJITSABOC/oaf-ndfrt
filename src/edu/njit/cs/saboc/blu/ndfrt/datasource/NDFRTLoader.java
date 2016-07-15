@@ -107,7 +107,7 @@ public class NDFRTLoader {
                     long childGID = Long.parseLong(parts[3]);
                     long parentGID = Long.parseLong(parts[4]);
 
-                    conceptHierarchy.addIsA(concepts.get(childGID), concepts.get(parentGID));
+                    conceptHierarchy.addEdge(concepts.get(childGID), concepts.get(parentGID));
                 }
 
             }

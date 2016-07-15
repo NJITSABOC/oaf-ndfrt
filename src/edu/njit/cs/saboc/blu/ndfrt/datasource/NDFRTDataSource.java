@@ -22,7 +22,7 @@ public class NDFRTDataSource extends Ontology {
 
         this.concepts = new HashMap<>();
         
-        conceptHierarchy.getNodesInHierarchy().forEach( (concept) -> {
+        conceptHierarchy.getNodes().forEach( (concept) -> {
             concepts.put(concept.getID(), concept);
         });
         
