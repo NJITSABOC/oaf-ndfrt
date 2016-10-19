@@ -15,8 +15,8 @@ import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.models.OAFAbstractTable
  */
 public class NDFTargetAbNUIConfiguration extends AbNUIConfiguration {
     
-    public NDFTargetAbNUIConfiguration() {
-        super(new NDFTargetAbNListenerConfiguration());
+    public NDFTargetAbNUIConfiguration(NDFTargetAbNConfiguration config) {
+        super(new NDFTargetAbNListenerConfiguration(config));
     }
 
     @Override
