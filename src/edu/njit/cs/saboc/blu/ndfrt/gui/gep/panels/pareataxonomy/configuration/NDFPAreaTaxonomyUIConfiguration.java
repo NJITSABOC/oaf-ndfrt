@@ -17,7 +17,7 @@ public class NDFPAreaTaxonomyUIConfiguration extends PAreaTaxonomyUIConfiguratio
     private final NDFDisplayFrameListener listener;
     
     public NDFPAreaTaxonomyUIConfiguration(NDFPAreaTaxonomyConfiguration config, NDFDisplayFrameListener listener) {
-        super(config, new NDFPAreaTaxonomyListenerConfiguration());
+        super(config, new NDFPAreaTaxonomyListenerConfiguration(config));
         
         this.config = config;
         this.listener = listener;
