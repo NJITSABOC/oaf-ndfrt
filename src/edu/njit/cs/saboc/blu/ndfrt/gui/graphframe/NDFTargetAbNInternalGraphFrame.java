@@ -4,8 +4,8 @@ import edu.njit.cs.saboc.blu.core.abn.node.Node;
 import edu.njit.cs.saboc.blu.core.abn.targetbased.AggregateTargetGroup;
 import edu.njit.cs.saboc.blu.core.abn.targetbased.TargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.core.abn.targetbased.TargetGroup;
-import edu.njit.cs.saboc.blu.core.graph.BluGraph;
-import edu.njit.cs.saboc.blu.core.graph.targetabn.TargetBluGraph;
+import edu.njit.cs.saboc.blu.core.graph.AbstractionNetworkGraph;
+import edu.njit.cs.saboc.blu.core.graph.targetabn.TargetAbNGraph;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.SinglyRootedNodeLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
 import edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.targetabn.configuration.NDFTargetAbNConfiguration;
@@ -13,7 +13,7 @@ import edu.njit.cs.saboc.blu.ndfrt.gui.gep.utils.drawing.TargetAbNPainter;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
+public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame<TargetAbstractionNetwork> {
 
 
     public NDFTargetAbNInternalGraphFrame(final JFrame parentFrame, final TargetAbstractionNetwork data) {
@@ -24,10 +24,6 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
         replaceInternalFrameDataWith(data);
     }
     
-    public TargetBluGraph getGraph() {
-        return (TargetBluGraph)super.getGraph();
-    }
-
     private void updateHierarchyInfoLabel(TargetAbstractionNetwork data) {               
         setHierarchyInfoText("TEST");
     }
@@ -35,7 +31,7 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
     public final void replaceInternalFrameDataWith(TargetAbstractionNetwork targetAbN) {
 
         Thread loadThread = new Thread(() -> {
-            gep.showLoading();
+            getAbNExplorationPanel().showLoading();
             
             SinglyRootedNodeLabelCreator labelCreator;
 
@@ -62,7 +58,7 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
                 };
             }
 
-            BluGraph graph = new TargetBluGraph(parentFrame, targetAbN, labelCreator);
+            AbstractionNetworkGraph graph = new TargetAbNGraph(getParentFrame(), targetAbN, labelCreator);
 
             SwingUtilities.invokeLater(() -> {
                 displayAbstractionNetwork(graph,
@@ -70,9 +66,6 @@ public class NDFTargetAbNInternalGraphFrame extends GenericInternalGraphFrame {
                         new NDFTargetAbNConfiguration(targetAbN));
 
                 updateHierarchyInfoLabel(targetAbN);
-
-                tabbedPane.validate();
-                tabbedPane.repaint();
             });
         });
         

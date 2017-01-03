@@ -3,8 +3,8 @@ package edu.njit.cs.saboc.blu.ndfrt.gui.graphframe;
 import edu.njit.cs.saboc.blu.core.abn.node.SinglyRootedNode;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.AggregatePArea;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.PAreaTaxonomy;
-import edu.njit.cs.saboc.blu.core.graph.BluGraph;
-import edu.njit.cs.saboc.blu.core.graph.pareataxonomy.PAreaBluGraph;
+import edu.njit.cs.saboc.blu.core.graph.AbstractionNetworkGraph;
+import edu.njit.cs.saboc.blu.core.graph.pareataxonomy.PAreaTaxonomyGraph;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.AbNPainter;
 import edu.njit.cs.saboc.blu.core.gui.gep.utils.drawing.SinglyRootedNodeLabelCreator;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.GenericInternalGraphFrame;
@@ -17,7 +17,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Chris O
  */
-public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
+public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame<PAreaTaxonomy> {
 
     public NDFPAreaInternalGraphFrame(
             JFrame parentFrame, 
@@ -39,7 +39,7 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
         
         Thread loadThread = new Thread(new Runnable() {
             public void run() {
-                gep.showLoading();
+                getAbNExplorationPanel().showLoading();
                 
                 SinglyRootedNodeLabelCreator labelCreator;
 
@@ -57,14 +57,12 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame {
                 
                 NDFPAreaTaxonomyConfiguration config = NDFPAreaTaxonomyConfigurationFactory.getConfigurationFor(taxonomy, null);
 
-                BluGraph newGraph = new PAreaBluGraph(parentFrame, taxonomy, labelCreator, config);
+                AbstractionNetworkGraph newGraph = new PAreaTaxonomyGraph(getParentFrame(), taxonomy, labelCreator, config);
                 
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        displayAbstractionNetwork(newGraph, new AbNPainter(), config);
-
-                        updateHierarchyInfoLabel(taxonomy);
-                    }
+                SwingUtilities.invokeLater(() -> {
+                    displayAbstractionNetwork(newGraph, new AbNPainter(), config);
+                    
+                    updateHierarchyInfoLabel(taxonomy);
                 });
             }
         });
