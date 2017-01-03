@@ -21,14 +21,14 @@ import javax.swing.JPanel;
 public class NDFRTSelectionFrame implements AbnSelectionFrameFactory{
 
     @Override
-    public JInternalFrame returnSelectionFrame(BLUFrame jFrame) {
+    public JInternalFrame createAbNSelectionFrame(BLUFrame jFrame) {
         JInternalFrame jif = new JInternalFrame();
         jif.setSize(1400, 700);
         JPanel jp= new NDFRTVersionSelectPanel(new NDFDisplayFrameListener(jFrame) {
             
             @Override
             public void displayFrame(JInternalFrame frame) {
-                jFrame.addFrame(frame);
+                jFrame.addInternalFrame(frame);
             }
         });
         jif.add(jp);
