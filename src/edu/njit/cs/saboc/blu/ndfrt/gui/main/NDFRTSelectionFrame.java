@@ -22,8 +22,10 @@ public class NDFRTSelectionFrame implements AbnSelectionFrameFactory{
 
     @Override
     public JInternalFrame createAbNSelectionFrame(BLUFrame jFrame) {
+        
         JInternalFrame jif = new JInternalFrame();
         jif.setSize(1400, 700);
+        
         JPanel jp= new NDFRTVersionSelectPanel(new NDFDisplayFrameListener(jFrame) {
             
             @Override
@@ -31,8 +33,10 @@ public class NDFRTSelectionFrame implements AbnSelectionFrameFactory{
                 jFrame.addInternalFrame(frame);
             }
         });
+        
         jif.add(jp);
         jif.setVisible(true);
+        
         return jif;
     }
 
