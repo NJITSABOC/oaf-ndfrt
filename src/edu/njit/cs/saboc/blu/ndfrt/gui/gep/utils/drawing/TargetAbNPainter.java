@@ -14,7 +14,7 @@ import java.awt.Stroke;
  * @author Chris O
  */
 public class TargetAbNPainter extends AbNPainter {
-    public void paintContainerAtPoint(Graphics2D g2d, PartitionedNodeEntry entry, Point p, double scale) {
+    public void paintPartitionedNodeAtPoint(Graphics2D g2d, PartitionedNodeEntry entry, Point p, double scale) {
         Stroke savedStroke = g2d.getStroke();
 
         g2d.setStroke(new BasicStroke(2));
