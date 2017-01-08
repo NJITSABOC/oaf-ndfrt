@@ -1,7 +1,7 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.graphframe;
 
 import edu.njit.cs.saboc.blu.core.abn.node.SinglyRootedNode;
-import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.AggregatePArea;
+import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.aggregate.AggregatePArea;
 import edu.njit.cs.saboc.blu.core.abn.pareataxonomy.PAreaTaxonomy;
 import edu.njit.cs.saboc.blu.core.graph.AbstractionNetworkGraph;
 import edu.njit.cs.saboc.blu.core.graph.pareataxonomy.PAreaTaxonomyGraph;
