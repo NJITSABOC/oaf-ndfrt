@@ -8,6 +8,7 @@ import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeOptionsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeDashboardPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.AbstractAbNDetailsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.models.OAFAbstractTableModel;
+import edu.njit.cs.saboc.blu.core.gui.graphframe.AbNDisplayManager;
 
 /**
  *
@@ -15,8 +16,18 @@ import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.models.OAFAbstractTable
  */
 public class NDFTargetAbNUIConfiguration extends AbNUIConfiguration {
     
-    public NDFTargetAbNUIConfiguration(NDFTargetAbNConfiguration config) {
-        super(new NDFTargetAbNListenerConfiguration(config));
+    public NDFTargetAbNUIConfiguration(NDFTargetAbNConfiguration config, AbNDisplayManager displayManager) {
+        super(displayManager, new NDFTargetAbNListenerConfiguration(config));
+    }
+
+    @Override
+    public OAFAbstractTableModel getParentNodeTableModel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public OAFAbstractTableModel getChildNodeTableModel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -41,16 +52,6 @@ public class NDFTargetAbNUIConfiguration extends AbNUIConfiguration {
 
     @Override
     public NodeDashboardPanel createGroupDetailsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public OAFAbstractTableModel<ParentNodeDetails> getParentNodeTableModel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public OAFAbstractTableModel<Node> getChildNodeTableModel() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class NDFRTVersionSelectPanel extends JPanel {
     private final JLabel statusLabel;
     
-    public NDFRTVersionSelectPanel(final NDFDisplayFrameListener displayListener) {
+    public NDFRTVersionSelectPanel(final NDFAbNFrameManager displayListener) {
         JButton loadButton = new JButton("Load NDF RT Release");
         loadButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
@@ -44,7 +44,7 @@ public class NDFRTVersionSelectPanel extends JPanel {
                     System.out.println("TAXONOMY METRICS: Areas: " + taxonomy.getAreaTaxonomy().getAreas().size());
                     
                     
-                    displayListener.addNewPAreaTaxonomyGraphGraph(taxonomy);
+                    displayListener.displayPAreaTaxonomy(taxonomy);
                 }
             }
         });

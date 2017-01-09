@@ -5,7 +5,7 @@ import edu.njit.cs.saboc.blu.core.abn.node.Node;
 import edu.njit.cs.saboc.blu.core.gui.dialogs.concepthierarchy.ConceptPainter;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeOptionsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.PAreaTaxonomyUIConfiguration;
-import edu.njit.cs.saboc.blu.ndfrt.gui.abnselection.NDFDisplayFrameListener;
+import edu.njit.cs.saboc.blu.core.gui.graphframe.AbNDisplayManager;
 
 /**
  *
@@ -14,45 +14,24 @@ import edu.njit.cs.saboc.blu.ndfrt.gui.abnselection.NDFDisplayFrameListener;
 public class NDFPAreaTaxonomyUIConfiguration extends PAreaTaxonomyUIConfiguration {
     
     private final NDFPAreaTaxonomyConfiguration config;
-    private final NDFDisplayFrameListener listener;
     
-    public NDFPAreaTaxonomyUIConfiguration(NDFPAreaTaxonomyConfiguration config, NDFDisplayFrameListener listener) {
-        super(config, new NDFPAreaTaxonomyListenerConfiguration(config));
+    public NDFPAreaTaxonomyUIConfiguration(
+            NDFPAreaTaxonomyConfiguration config, 
+            AbNDisplayManager displayManager) {
+        
+        super(config, displayManager, new NDFPAreaTaxonomyListenerConfiguration(config));
         
         this.config = config;
-        this.listener = listener;
     }
 
     @Override
     public NodeOptionsPanel getPartitionedNodeOptionsPanel() {
-        return new NodeOptionsPanel() {
-
-            @Override
-            public void setContents(Node node) {
-               
-            }
-
-            @Override
-            public void clearContents() {
-              
-            }
-        };
+        return new NodeOptionsPanel<>();
     }
 
     @Override
     public NodeOptionsPanel getNodeOptionsPanel() {
-        return new NodeOptionsPanel() {
-
-            @Override
-            public void setContents(Node node) {
-               
-            }
-
-            @Override
-            public void clearContents() {
-                
-            }
-        };
+        return new NodeOptionsPanel<>();
     }
 
     @Override
