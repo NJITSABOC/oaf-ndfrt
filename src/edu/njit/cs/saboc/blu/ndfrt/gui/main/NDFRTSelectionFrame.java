@@ -6,7 +6,7 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.main;
 
 import edu.njit.cs.saboc.blu.core.gui.frame.AbnSelectionFrameFactory;
-import edu.njit.cs.saboc.blu.core.gui.frame.BLUFrame;
+import edu.njit.cs.saboc.blu.core.gui.frame.OAFMainFrame;
 import edu.njit.cs.saboc.blu.ndfrt.gui.abnselection.NDFAbNFrameManager;
 import edu.njit.cs.saboc.blu.ndfrt.gui.abnselection.NDFRTVersionSelectPanel;
 
@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 public class NDFRTSelectionFrame implements AbnSelectionFrameFactory{
 
     @Override
-    public JInternalFrame createAbNSelectionFrame(BLUFrame jFrame) {
+    public JInternalFrame createAbNSelectionFrame(OAFMainFrame jFrame) {
         
         JInternalFrame jif = new JInternalFrame();
         jif.setSize(1400, 700);

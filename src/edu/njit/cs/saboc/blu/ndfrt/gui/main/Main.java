@@ -5,7 +5,7 @@
  */
 package edu.njit.cs.saboc.blu.ndfrt.gui.main;
 
-import edu.njit.cs.saboc.blu.core.gui.frame.BLUFrame;
+import edu.njit.cs.saboc.blu.core.gui.frame.OAFMainFrame;
 
 /**
  *
@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
   
-        BLUFrame bLUFrame = new BLUFrame(new NDFRTSelectionFrame());
+        OAFMainFrame bLUFrame = new OAFMainFrame(new NDFRTSelectionFrame());
               
 
     }  
