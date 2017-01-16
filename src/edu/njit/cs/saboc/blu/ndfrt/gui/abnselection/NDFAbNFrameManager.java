@@ -61,4 +61,15 @@ public class NDFAbNFrameManager extends AbNDisplayManager {
 
         super.getFrameCreationAction().displayFrame(igf);
     }
+
+    @Override
+    public void displayAreaTaxonomy(PAreaTaxonomy taxonomy) {
+        
+    }
+
+    @Override
+    public void displayBandTribalAbstractionNetwork(ClusterTribalAbstractionNetwork tan) {
+        
+    }
+    
 }
