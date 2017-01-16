@@ -9,6 +9,7 @@ import edu.njit.cs.saboc.blu.core.ontology.Concept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFConcept;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRelationship;
 import edu.njit.cs.saboc.blu.ndfrt.conceptdata.NDFRole;
+import edu.njit.cs.saboc.blu.ndfrt.datasource.NDFRTDataSource;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -22,7 +23,11 @@ public class NDFRTPAreaTaxonomyFactory extends PAreaTaxonomyFactory {
     
     private final Map<Concept, Set<InheritableProperty>> properties = new HashMap<>();
     
-    public NDFRTPAreaTaxonomyFactory(Hierarchy<NDFConcept> hierarchy) {
+    public NDFRTPAreaTaxonomyFactory(NDFRTDataSource dataSource) {
+        
+        super(dataSource);
+        
+        Hierarchy<NDFConcept> hierarchy = dataSource.getConceptHierarchy();
         
         Map<NDFConcept, Set<NDFRole>> uniqueRoles = new HashMap<>();
         

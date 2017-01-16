@@ -38,7 +38,7 @@ public class NDFRTVersionSelectPanel extends JPanel {
                     PAreaTaxonomyGenerator generator = new PAreaTaxonomyGenerator();
                     
                     PAreaTaxonomy taxonomy = generator.derivePAreaTaxonomy(
-                            new NDFRTPAreaTaxonomyFactory(dataSource.getConceptHierarchy()), 
+                            new NDFRTPAreaTaxonomyFactory(dataSource), 
                             dataSource.getConceptHierarchy());
                     
                     System.out.println("TAXONOMY METRICS: Areas: " + taxonomy.getAreaTaxonomy().getAreas().size());
