@@ -1,11 +1,15 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.gep.configuration;
 
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.configuration.OntologyEntityNameConfiguration;
+
 /**
  *
  * @author Chris O
  */
-public class NDFRTEntityNameUtils {
-    public static String getConceptTypeName(boolean plural) {
+public class NDFRTEntityNameConfiguration implements OntologyEntityNameConfiguration {
+    
+    @Override
+    public String getConceptTypeName(boolean plural) {
         if(plural) {
             return "Concepts";
         } else {
@@ -13,7 +17,8 @@ public class NDFRTEntityNameUtils {
         }
     }
     
-    public static String getParentConceptTypeName(boolean plural) {
+    @Override
+    public String getParentConceptTypeName(boolean plural) {
         if(plural) {
             return "Parents";
         } else {
@@ -21,7 +26,8 @@ public class NDFRTEntityNameUtils {
         }
     }
     
-    public static String getChildConceptTypeName(boolean plural) {
+    @Override
+    public String getChildConceptTypeName(boolean plural) {
         if(plural) {
             return "Children";
         } else {
@@ -29,7 +35,8 @@ public class NDFRTEntityNameUtils {
         }
     }
     
-    public static String getPropertyTypeName(boolean plural) {
+    @Override
+    public String getPropertyTypeName(boolean plural) {
         if(plural) {
             return "Roles";
         } else {
