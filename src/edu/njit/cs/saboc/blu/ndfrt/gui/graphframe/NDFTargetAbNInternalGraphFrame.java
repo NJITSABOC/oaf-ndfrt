@@ -1,7 +1,7 @@
 package edu.njit.cs.saboc.blu.ndfrt.gui.graphframe;
 
 import edu.njit.cs.saboc.blu.core.abn.node.Node;
-import edu.njit.cs.saboc.blu.core.abn.targetbased.AggregateTargetGroup;
+import edu.njit.cs.saboc.blu.core.abn.targetbased.aggregate.AggregateTargetGroup;
 import edu.njit.cs.saboc.blu.core.abn.targetbased.TargetAbstractionNetwork;
 import edu.njit.cs.saboc.blu.core.abn.targetbased.TargetGroup;
 import edu.njit.cs.saboc.blu.core.graph.AbstractionNetworkGraph;
