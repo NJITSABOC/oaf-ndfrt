@@ -37,34 +37,38 @@ public class NDFPAreaInternalGraphFrame extends GenericInternalGraphFrame<PAreaT
 
     public final void replaceInternalFrameDataWith(PAreaTaxonomy taxonomy) {
         
-        Thread loadThread = new Thread(new Runnable() {
-            public void run() {
-                getAbNExplorationPanel().showLoading();
-                
-                SinglyRootedNodeLabelCreator labelCreator;
-
-                if (taxonomy.isAggregated()) {
-                    labelCreator = new SinglyRootedNodeLabelCreator() {
-                        public String getCountStr(SinglyRootedNode node) {
-                            
-                            AggregatePArea parea = (AggregatePArea)node;
-                            return String.format("(%d) [%d]", parea.getConceptCount(), parea.getAggregatedNodes().size());
-                        }
-                    };
-                } else {
-                    labelCreator = new SinglyRootedNodeLabelCreator();
-                }
-                
-                NDFPAreaTaxonomyConfiguration config = NDFPAreaTaxonomyConfigurationFactory.getConfigurationFor(taxonomy, null);
-
-                AbstractionNetworkGraph newGraph = new PAreaTaxonomyGraph(getParentFrame(), taxonomy, labelCreator, config);
-                
-                SwingUtilities.invokeLater(() -> {
-                    displayAbstractionNetwork(newGraph, new AbNPainter(), config);
+        Thread loadThread = new Thread(() -> {
+            getAbNExplorationPanel().showLoading();
+            
+            SinglyRootedNodeLabelCreator labelCreator;
+            
+            if (taxonomy.isAggregated()) {
+                labelCreator = new SinglyRootedNodeLabelCreator() {
                     
-                    updateHierarchyInfoLabel(taxonomy);
-                });
+                    @Override
+                    public String getCountStr(SinglyRootedNode node) {
+                        
+                        AggregatePArea parea = (AggregatePArea)node;
+                        return String.format("(%d) [%d]", parea.getConceptCount(), parea.getAggregatedNodes().size());
+                    }
+                };
+            } else {
+                labelCreator = new SinglyRootedNodeLabelCreator();
             }
+            
+            NDFPAreaTaxonomyConfiguration config = 
+                    NDFPAreaTaxonomyConfigurationFactory.getConfigurationFor(
+                            taxonomy, 
+                            null, 
+                            false);
+            
+            AbstractionNetworkGraph newGraph = new PAreaTaxonomyGraph(getParentFrame(), taxonomy, labelCreator, config);
+            
+            SwingUtilities.invokeLater(() -> {
+                displayAbstractionNetwork(newGraph, new AbNPainter(), config);
+                
+                updateHierarchyInfoLabel(taxonomy);
+            });
         });
         
         loadThread.start();

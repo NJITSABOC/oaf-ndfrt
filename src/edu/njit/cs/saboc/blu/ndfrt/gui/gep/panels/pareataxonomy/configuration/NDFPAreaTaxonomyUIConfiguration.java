@@ -1,7 +1,6 @@
 
 package edu.njit.cs.saboc.blu.ndfrt.gui.gep.panels.pareataxonomy.configuration;
 
-import edu.njit.cs.saboc.blu.core.abn.node.Node;
 import edu.njit.cs.saboc.blu.core.gui.dialogs.concepthierarchy.ConceptPainter;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeOptionsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.pareataxonomy.configuration.PAreaTaxonomyUIConfiguration;
@@ -17,9 +16,13 @@ public class NDFPAreaTaxonomyUIConfiguration extends PAreaTaxonomyUIConfiguratio
     
     public NDFPAreaTaxonomyUIConfiguration(
             NDFPAreaTaxonomyConfiguration config, 
-            AbNDisplayManager displayManager) {
+            AbNDisplayManager displayManager,
+            boolean showingAreaTaxonomy) {
         
-        super(config, displayManager, new NDFPAreaTaxonomyListenerConfiguration(config));
+        super(config, 
+                displayManager, 
+                new NDFPAreaTaxonomyListenerConfiguration(config), 
+                showingAreaTaxonomy);
         
         this.config = config;
     }
