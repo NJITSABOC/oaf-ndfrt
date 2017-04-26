@@ -6,7 +6,7 @@ import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.CompactNodeDashboardPan
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeOptionsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.NodeDashboardPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.CompactAbNDetailsPanel;
-import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.SimpleAbNDetailsPanel;
+import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.abn.AbNDetailsPanel;
 import edu.njit.cs.saboc.blu.core.gui.gep.panels.details.models.OAFAbstractTableModel;
 import edu.njit.cs.saboc.blu.core.gui.graphframe.AbNDisplayManager;
 
@@ -41,7 +41,7 @@ public class NDFTargetAbNUIConfiguration extends AbNUIConfiguration {
     }
 
     @Override
-    public SimpleAbNDetailsPanel createAbNDetailsPanel() {
+    public AbNDetailsPanel createAbNDetailsPanel() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
