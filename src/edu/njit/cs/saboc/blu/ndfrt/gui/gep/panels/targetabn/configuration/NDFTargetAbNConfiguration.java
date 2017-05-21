@@ -13,6 +13,7 @@ public class NDFTargetAbNConfiguration extends AbNConfiguration {
         super(targetAbN);
     }
     
+    @Override
     public TargetAbstractionNetwork getAbstractionNetwork() {
         return (TargetAbstractionNetwork)super.getAbstractionNetwork();
     }
